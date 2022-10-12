@@ -1,6 +1,9 @@
 /*---------------------
   Header
 -----------------------*/
+@import 'variable';
+@import "mixins";
+
 .header {
     background: $white-color;
 }
