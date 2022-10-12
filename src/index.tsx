@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom/client';
 import './styles/sass/style.scss';
 import './index.css';
 
-import SiteRouter from './routing/site-route.tsx';
+import SiteRouter from './routing/site-route';
 import reportWebVitals from './reportWebVitals';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
     <SiteRouter />
