@@ -12,17 +12,22 @@ const stylesHandler = isProduction
   : "style-loader";
 
 const config = {
-  entry: "./src/index",
+  // entry: "./src/index",
+  entry: {
+    app: path.join(__dirname, 'src', 'index.tsx')
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: '/',
   },
   devServer: {
     open: true,
     host: "localhost",
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: "./public/index.html",
     }),
 
     // Add your plugins here
@@ -47,6 +52,11 @@ const config = {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
       },
+      // {
+      //   test: /\.(png|svg|jpg|jpeg|gif|ico|css|js)$/,
+      //   exclude: /node_modules/,
+      //   use: ['file-loader?name=[name].[ext]']
+      // }
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
