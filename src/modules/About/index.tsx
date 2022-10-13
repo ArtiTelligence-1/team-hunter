@@ -13,7 +13,7 @@ const About = () => {
                     <div className="breadcrumb__text">
                         <h4>About Us</h4>
                         <div className="breadcrumb__links">
-                            <a href="./index.html">Home</a>
+                            <a href="../modules/Home">Home</a>
                             <span>About Us</span>
                         </div>
                     </div>

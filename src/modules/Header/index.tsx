@@ -25,7 +25,7 @@ const Header = () => (
                 <nav className="header__menu mobile-menu">
                     <ul>
                         <li className="active"><Link to="./index.html">Home</Link></li>
-                        <li><Link to="/events.html">Events</Link></li>
+                        <li><Link to="/events">Events</Link></li>
                         <li><Link to="/about">About Us</Link></li>
                         <li><Link to="/contact">Contacts</Link></li>
                     </ul>

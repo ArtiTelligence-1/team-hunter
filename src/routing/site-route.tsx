@@ -5,6 +5,7 @@ import MainLayout from '../modules/Layout';
 
 // const Layout = React.lazy(() => import('../modules/Layout'));
 const HomePage = React.lazy(() => /*webpackChunkName: “Home” */  import('../modules/Home'));
+const EventsPage = React.lazy(() => /*webpackChunkName: “Events” */  import('../modules/Events'));
 const AboutPage = React.lazy(() => /*webpackChunkName: “About” */  import('../modules/About'));
 const ContactPage = React.lazy(() => /*webpackChunkName: “Contact” */  import('../modules/Contact'));
 
@@ -12,7 +13,8 @@ const ContactPage = React.lazy(() => /*webpackChunkName: “Contact” */  impor
 const SiteRouter = () => (
     <BrowserRouter>
         <Routes>
-            <Route path='/' element={<MainLayout><HomePage /></MainLayout>} />
+            <Route path='/Home' element={<MainLayout><HomePage /></MainLayout>} />
+            <Route path='/Events' element={<MainLayout><EventsPage /></MainLayout>} />
             <Route path='/About' element={<MainLayout><AboutPage /></MainLayout>} />
             <Route path='/Contact' element={<MainLayout><ContactPage /></MainLayout>} />
         </Routes>
