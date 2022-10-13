@@ -1,6 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import {  } from '../../components/ImgLoader';
+import 'antd/dist/antd.css';
+import { Select, Col, InputNumber, Row, Slider } from 'antd';
 
+const { Option } = Select;
+const onChange = (value: any) => {
+  console.log(`selected ${value}`);
+};
+
+
+const IntegerStep = () => {
+  const [inputValue, setInputValue] = useState(1);
+  const onChange = (newValue: any) => {
+    setInputValue(newValue);
+  };
+  return (
+    <Row>
+      <Col span={12}>
+        <Slider
+          min={1}
+          max={100}
+          onChange={onChange}
+          value={typeof inputValue === 'number' ? inputValue : 0}
+        />
+      </Col>
+      <Col span={4}>
+        <InputNumber
+          min={1}
+          max={20}
+          style={{
+            margin: '0 16px',
+            
+          }}
+          value={inputValue}
+          onChange={onChange}
+        />
+      </Col>
+    </Row>
+  );
+};
 const Profile = () => {
 
 
@@ -45,14 +83,6 @@ const Profile = () => {
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <label>User Id</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <input className='form-control' type='text' value='123456' disabled />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
                                         <label>Name</label>
                                     </div>
                                     <div className="col-md-6">
@@ -72,8 +102,13 @@ const Profile = () => {
                                         <label>Sex</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <input className='form-control' type='text' placeholder='Search' />
-                                        
+                                        <label className="selectlabel">
+                                            <select className="selectdiv">
+                                                <option selected> Choose.. </option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </label>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -81,7 +116,9 @@ const Profile = () => {
                                         <label>Age</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <input className='form-control' type='text' placeholder='Search' />
+                                        <div>
+                                            <IntegerStep />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -105,7 +142,7 @@ const Profile = () => {
                                         <label>About me</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <input className='form-control' type='text' placeholder='Search' />
+                                        <textarea className="textarea_prop">Some text about you...</textarea>
                                     </div>
                                 </div>
                                 
