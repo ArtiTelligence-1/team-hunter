@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { } from '../../components/ImgLoader';
-
-
+import { HeartSrcIcon } from '../../components/ImgLoader';
+import BackgroundImage from '../../static/img/product/product-8.jpg';
 
 const Events = () => {
+
+
+    
   return (
     <>
+    
 {/* <!-- Breadcrumb Section Begin --> */}
     <section className="breadcrumb-option">
         <div className="container">
@@ -133,9 +136,9 @@ const Events = () => {
                     <div className="row">
                         <div className="col-lg-4 col-md-6 col-sm-6">
                             <div className="product__item">
-                                <div className="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
+                                <div className="product__item__pic set-bg" style ={ { backgroundImage: `url(${BackgroundImage})` } }>
                                     <ul className="product__hover">
-                                        {/* <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li> */}
+                                        <HeartSrcIcon />
                                     </ul>
                                 </div>
                                 <div className="product__item__text">

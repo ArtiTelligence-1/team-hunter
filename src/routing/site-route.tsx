@@ -8,6 +8,7 @@ const HomePage = React.lazy(() => /*webpackChunkName: “Home” */  import('../
 const EventsPage = React.lazy(() => /*webpackChunkName: “Events” */  import('../modules/Events'));
 const AboutPage = React.lazy(() => /*webpackChunkName: “About” */  import('../modules/About'));
 const ContactPage = React.lazy(() => /*webpackChunkName: “Contact” */  import('../modules/Contact'));
+const ProfilePage = React.lazy(() => /*webpackChunkName: “Profile” */  import('../modules/Profile'));
 
 
 const SiteRouter = () => (
@@ -18,6 +19,7 @@ const SiteRouter = () => (
             <Route path='/Events' element={<MainLayout><EventsPage /></MainLayout>} />
             <Route path='/About' element={<MainLayout><AboutPage /></MainLayout>} />
             <Route path='/Contact' element={<MainLayout><ContactPage /></MainLayout>} />
+            <Route path='/Profile' element={<MainLayout><ProfilePage /></MainLayout>} />
         </Routes>
     </BrowserRouter>
 ) 

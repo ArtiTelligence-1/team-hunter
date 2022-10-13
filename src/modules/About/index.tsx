@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { AboutBGSrcIcon, TestimonialAuthorSrcIcon } from '../../components/ImgLoader';
-
+import { AboutBGSrcIcon, TestimonialAuthorSrcIcon} from '../../components/ImgLoader';
+import Quote_BG from '../../static/img/about/quote_bg.jpg';
 const About = () => {
 
   return (
@@ -81,7 +81,7 @@ const About = () => {
                     </div>
                 </div>
                 <div className="col-lg-6 p-0">
-                    <div className="testimonial__pic set-bg" data-setbg="img/about/quote_bg.jpg"></div>
+                    <div className="testimonial__pic set-bg" style ={ { backgroundImage: `url(${Quote_BG})` } }></div>
                 </div>
             </div>
         </div>
