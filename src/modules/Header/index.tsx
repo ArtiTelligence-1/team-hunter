@@ -16,7 +16,7 @@ const Header = () => (
         <div className="row">
             <div className="col-lg-3 col-md-3">
                 <div className="header__logo">
-                    <Link to="./index.html">
+                    <Link to="/">
                         <LogoSrcIcon />
                     </Link>
                 </div>
@@ -24,7 +24,7 @@ const Header = () => (
             <div className="col-lg-6 col-md-6">
                 <nav className="header__menu mobile-menu">
                     <ul>
-                        <li className="active"><Link to="./index.html">Home</Link></li>
+                        <li className="active"><Link to="/">Home</Link></li>
                         <li><Link to="/events">Events</Link></li>
                         <li><Link to="/about">About Us</Link></li>
                         <li><Link to="/contact">Contacts</Link></li>
