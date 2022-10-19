@@ -16,7 +16,7 @@ const Header = () => (
         <div className="row">
             <div className="col-lg-3 col-md-3">
                 <div className="header__logo">
-                    <Link to="./index.html">
+                    <Link to="/index">
                         <LogoSrcIcon />
                     </Link>
                 </div>

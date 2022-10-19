@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import {  } from '../../components/ImgLoader';
-import 'antd/dist/antd.css';
-import { Select, Col, InputNumber, Row, Slider } from 'antd';
+import { Select, Col, InputNumber, Row, Slider, Input  } from 'antd';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const { Option } = Select;
+const { TextArea } = Input;
 const onChange = (value: any) => {
   console.log(`selected ${value}`);
 };
 
 
 const IntegerStep = () => {
-  const [inputValue, setInputValue] = useState(1);
-  const onChange = (newValue: any) => {
-    setInputValue(newValue);
-  };
-  return (
+    const [inputValue, setInputValue] = useState(1);
+  
+const onChange = (newValue: any) => {
+setInputValue(newValue);
+};
+
+return (
     <Row>
-      <Col span={12}>
+      <Col span={17}>
         <Slider
           min={1}
           max={100}
@@ -24,14 +28,11 @@ const IntegerStep = () => {
           value={typeof inputValue === 'number' ? inputValue : 0}
         />
       </Col>
-      <Col span={4}>
+      <Col span={7}>
         <InputNumber
           min={1}
-          max={20}
-          style={{
-            margin: '0 16px',
-            
-          }}
+          max={100}
+          style={{ margin: '0 16px' }}
           value={inputValue}
           onChange={onChange}
         />
@@ -39,9 +40,14 @@ const IntegerStep = () => {
     </Row>
   );
 };
+
+
 const Profile = () => {
-
-
+    const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        console.log('Change:', e.target.value);
+      };
+    
+    const [value, setValue] = useState<string>("")
     
   return (
     <>
@@ -58,7 +64,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         <div className="profile-head">
                                     <h5>
                                         Kshiti Ghelani
@@ -102,13 +108,11 @@ const Profile = () => {
                                         <label>Sex</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <label className="selectlabel">
                                             <select className="selectdiv">
                                                 <option selected> Choose.. </option>
                                                 <option>Male</option>
                                                 <option>Female</option>
                                             </select>
-                                        </label>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -116,7 +120,7 @@ const Profile = () => {
                                         <label>Age</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <div>
+                                        <div className="sliderdiv">
                                             <IntegerStep />
                                         </div>
                                     </div>
@@ -126,23 +130,28 @@ const Profile = () => {
                                         <label>Phone Number</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <input className='form-control' type='text' placeholder='Search' />
+                                    <PhoneInput className='phoneInput'
+                                        international
+                                        defaultCountry="UA"
+                                        limitMaxLength={true}
+                                        value={value}
+                                        onChange={(string) => setValue}/>
                                     </div>
                                 </div>
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="col-md-6">
                                         <label>Tags</label>
                                     </div>
                                     <div className="col-md-6">
                                         <input className='form-control' type='text' placeholder='Search' />
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label>About me</label>
                                     </div>
-                                    <div className="col-md-6">
-                                        <textarea className="textarea_prop">Some text about you...</textarea>
+                                    <div className="col-md-6" >
+                                        <TextArea className="textarea_prop" maxLength={300} showCount onChange={onChange}>Some text about you...</TextArea>
                                     </div>
                                 </div>
                                 

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import '../../styles/css/style.css';
+import '../../styles/css/style.less';
 // import '../../styles/sass/_header.scss';
 // import '../../styles/sass/_footer.scss';
 import Header from '../Header';
@@ -10,7 +10,7 @@ const MainLayout = ({ children }: {children: ReactElement<any, any>}) => {
     return (
         <>
         <Header />
-            {children}
+            <React.Suspense fallback={<>...</>}>{children}</React.Suspense>
         <Footer />
         </>
     )

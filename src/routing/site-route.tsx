@@ -17,6 +17,7 @@ const SiteRouter = () => (
             <Route path='/' element={<MainLayout><HomePage /></MainLayout>} />
             <Route path='/Home' element={<MainLayout><HomePage /></MainLayout>} />
             <Route path='/Events' element={<MainLayout><EventsPage /></MainLayout>} />
+            {/* <Route path='/Events' element={<MainLayout><EventsPage /></MainLayout>} /> */}
             <Route path='/About' element={<MainLayout><AboutPage /></MainLayout>} />
             <Route path='/Contact' element={<MainLayout><ContactPage /></MainLayout>} />
             <Route path='/Profile' element={<MainLayout><ProfilePage /></MainLayout>} />
