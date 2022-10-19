@@ -5,7 +5,7 @@ import Login from './Login';
 const LoginRouter = () => {
     return (
         <Routes>
-            <Route path='/login' element={<Login />} />
+            <Route path='signin' element={<Login />} />
         </Routes>
     );
 };

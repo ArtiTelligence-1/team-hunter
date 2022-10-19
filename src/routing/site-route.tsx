@@ -16,7 +16,7 @@ const SiteRouter = () => (
     <BrowserRouter>
         <Suspense>
             <Routes>
-                <Route path='/authorization' element={<MainLayout><LoginPage /></MainLayout>} />
+                <Route path='/login/*' element={<MainLayout><LoginPage /></MainLayout>} />
                 <Route path='/' element={<MainLayout><HomePage /></MainLayout>} />
                 <Route path='/Home' element={<MainLayout><HomePage /></MainLayout>} />
                 <Route path='/Events' element={<MainLayout><EventsPage /></MainLayout>} />

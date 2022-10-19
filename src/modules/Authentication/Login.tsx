@@ -16,7 +16,6 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
       <div className={`container ${rightPanelActive ? 'right-panel-active' : ''}`} id="container">
         <div className="form-container sign-up-container">
           <form action="#">
@@ -26,7 +25,7 @@ const Login = () => {
             <Input type="text" placeholder="Name" />
             <Input type="email" placeholder="Email" />
             <Input type="password" placeholder="Password" />
-            <Button>Sign Up</Button>
+            <button>Sign Up</button>
           </form>
         </div>
         <div className="form-container sign-in-container">
@@ -37,7 +36,7 @@ const Login = () => {
             <Input type="email" placeholder="Email" />
             <Input type="password" placeholder="Password" />
             <a href="#">Forgot your password?</a>
-            <Button>Sign In</Button>
+            <button>Sign In</button>
           </form>
         </div>
         <div className="overlay-container">
@@ -45,12 +44,12 @@ const Login = () => {
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
               <p>To keep connected with us please login with your personal info</p>
-              <Button className="ghost" id="signIn">Sign In</Button>
+              <button className="ghost" id="signIn" onClick={() => setRightPanelActive(false)}>Sign In</button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
-              <Button className="ghost" id="signUp">Sign Up</Button>
+              <button className="ghost" id="signUp" onClick={() => setRightPanelActive(true)}>Sign Up</button>
             </div>
           </div>
         </div>
