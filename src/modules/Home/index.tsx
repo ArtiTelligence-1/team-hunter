@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BannerSrcIcon, CompareSrcIcon, HeartSrcIcon, SearchSrcIcon } from '../../components/ImgLoader';
+import ProductCard from '../../components/ProductCard';
 
 import test from "../../static/img/product/product-1.jpg";
 
@@ -106,7 +107,9 @@ const Home = () => {
             </ul>
           </div>
         </div>
-        
+        <div className="row product__filter">
+          <ProductCard />
+        </div>
       </div>
     </section>
     {/* <!-- Product Section End --> */}

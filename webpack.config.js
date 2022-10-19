@@ -49,6 +49,31 @@ const config = {
         use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
+        test: /\.less$/, 
+        use: [{
+            loader: "style-loader"
+        }, {
+            loader: "css-loader"
+        }, {
+            loader: "less-loader",
+            options: {
+                lessOptions: {
+                    modifyVars: { 
+                      '@slider-track-background-color': '#e53637',
+                      '@slider-track-background-color-hover': '#e53637',
+
+                      '@slider-handle-color': '#000000',
+                      '@slider-handle-color-hover': '#e53637',
+                      '@slider-handle-color-focus': 'tint(#000000, 20%)',
+                      '@slider-handle-color-focus-shadow': 'fade(#e53637, 12%)',
+                      '@slider-handle-color-tooltip-open': '#e53637'
+                    },
+                    javascriptEnabled: true,
+                }
+            }
+        }]
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
       },

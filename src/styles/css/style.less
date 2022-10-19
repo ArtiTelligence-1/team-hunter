@@ -30,6 +30,9 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+@import "~antd/lib/style/themes/default.less";
+@import '~antd/dist/antd.less';
+
 html,
 body {
 	height: 100%;
@@ -3938,6 +3941,7 @@ ol {
 }
 .profile-tab label{
     font-weight: 600;
+	padding: 6px 12px;
 	margin: 12px 12px;
 }
 .profile-tab p{
@@ -3957,19 +3961,19 @@ input[type=text] {
   .selectdiv {
 	font-size: 12px;
 	width: 100%;
-	height: 70%;
+	height: 60%;
 	color: #818182;
     font-weight: 600;
 	border:0;
+	padding: 6px 12px;
 	padding-left: 6px;
+	margin: 12px 12px;
 	box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
   }
 
-  .selectlabel {
-	width: 100%;
-	height: 100%;
-	border:0;
-	padding: 6px 0px;
+  .sliderdiv{
+	padding: 6px 12px;
+	margin: 12px 12px;
   }
 
   .ant-slider-track{
@@ -3980,8 +3984,40 @@ input[type=text] {
 	font-size: 12px;
     color: #818182;
 	width: 100%;
+	height: 130px;
     font-weight: 600;
 	margin: 12px 12px;
+	box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+	textarea{
+		resize: none; 
+		border: 0;
+	}
+  }
+
+  .phoneInput{
+	font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+	margin: 12px;
+	padding: 6px 12px;
 	border:0;
 	box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
   }
+
+  .PhoneInputInput {
+	padding: 6px 12px;
+    font-weight: 600;
+	font-size: 12px;
+	border:0;
+	letter-spacing: 1px;
+  }
+
+  .PhoneInput{
+	margin: 12px 12px;
+	width: 100%;
+  }
+
+  .PhoneInputCountry{
+	padding: 6px 12px;
+  }
+
