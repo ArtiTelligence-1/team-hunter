@@ -12,11 +12,16 @@
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
-	margin: -20px 0 50px;
+	margin: -20px 0;
 	
 	h1 {
 		font-weight: bold;
+		font-size: 40pt;
 		margin: 0;
+		color: #333;
+	}
+	.h1_overlay{
+		color: #fff;
 	}
 	
 	h2 {
@@ -29,6 +34,7 @@
 		line-height: 20px;
 		letter-spacing: 0.5px;
 		margin: 20px 0 30px;
+		color: white;
 	}
 	
 	span {
@@ -44,8 +50,8 @@
 	
 	button {
 		border-radius: 20px;
-		border: 1px solid #FF4B2B;
-		background-color: #FF4B2B;
+		border: 1px solid #e53637;
+		background-color: #e53637;
 		color: #FFFFFF;
 		font-size: 12px;
 		font-weight: bold;
@@ -80,11 +86,12 @@
 	}
 	
 	input {
-		background-color: #eee;
-		border: none;
-		padding: 12px 15px;
-		margin: 8px 0;
-		width: 100%;
+			font-size: 16px;
+			color: #818182;
+			font-weight: 600;
+			margin: 12px 12px;
+			border:0;
+			box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
 	}
 	
 	.container {
@@ -96,7 +103,8 @@
 		overflow: hidden;
 		width: 768px;
 		max-width: 100%;
-		min-height: 480px;
+		min-height: 500px;
+		margin-top: -50px;
 	}
 	
 	.form-container {
@@ -158,9 +166,8 @@
 	}
 	
 	.overlay {
-		background: #FF416C;
-		background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-		background: linear-gradient(to right, #FF4B2B, #FF416C);
+		// e45d5d
+		background-image: linear-gradient(to right, #c22525 0%, #e53637 100%);
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: 0 0;
@@ -212,17 +219,13 @@
 	.social-container {
 		margin: 20px 0;
 	}
-	
-	.social-container .link {
-		border: 1px solid #DDDDDD;
-		border-radius: 50%;
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		margin: 0 5px;
-		height: 40px;
-		width: 40px;
+	.svg-inline--fa {
+		height: 24px;
+		width: 24px;
+		font-size: 600;
+		padding: 0px 12px;
 	}
+	
 }
 
 // footer {

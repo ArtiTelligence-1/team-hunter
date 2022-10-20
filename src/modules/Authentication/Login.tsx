@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Button from 'antd/lib/button';
 import Input from 'antd/lib/input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 
 import './Login.less';
 
@@ -8,9 +10,8 @@ const Login = () => {
   const [rightPanelActive, setRightPanelActive] = useState(false);
   const SocialLoginBox = () => (
     <div className="social-container">
-      <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-      <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-      <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+      <a href="#" className="social"><FontAwesomeIcon icon={faFacebook} /></a>
+      <a href="#" className="social"><FontAwesomeIcon icon={faGoogle} /></a>
     </div>
   );
 
@@ -42,12 +43,12 @@ const Login = () => {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
+              <h1 className='h1_overlay'>Welcome Back!</h1>
               <p>To keep connected with us please login with your personal info</p>
               <button className="ghost" id="signIn" onClick={() => setRightPanelActive(false)}>Sign In</button>
             </div>
             <div className="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
+              <h1 className='h1_overlay'>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
               <button className="ghost" id="signUp" onClick={() => setRightPanelActive(true)}>Sign Up</button>
             </div>

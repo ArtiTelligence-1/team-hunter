@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { HeartSrcIcon } from '../../components/ImgLoader';
-import BackgroundImage from '../../static/img/product/product-8.jpg';
+import BackgroundImage from '../../static/img/product/product-13.jpg';
 
 const Events = () => {
 
