@@ -130,12 +130,14 @@ const Profile = () => {
                                         <label>Phone Number</label>
                                     </div>
                                     <div className="col-md-6">
-                                    <PhoneInput className='phoneInput'
-                                        international
-                                        defaultCountry="UA"
-                                        limitMaxLength={true}
-                                        value={value}
-                                        onChange={(string) => setValue}/>
+                                        <div className="profile-phone-input-div">
+                                            <PhoneInput className='phoneInput'
+                                                international
+                                                defaultCountry="UA"
+                                                limitMaxLength={true}
+                                                value={value}
+                                                onChange={(string) => setValue}/>
+                                        </div>
                                     </div>
                                 </div>
                                 {/* <div className="row">

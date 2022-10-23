@@ -86,12 +86,20 @@
 	}
 	
 	input {
-			font-size: 16px;
-			color: #818182;
-			font-weight: 600;
-			margin: 12px 12px;
-			border:0;
-			box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+		font-size: 16px;
+		color: #818182;
+		font-weight: 600;
+		margin: 12px 12px;
+		border:0;
+		box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+	}
+
+	.input-code{
+		text-align: center;
+		font-size: 20px;
+		width: 70%;
+		letter-spacing: 8px;
+		word-spacing: 16px;
 	}
 	
 	.container {
@@ -129,6 +137,11 @@
 		width: 50%;
 		opacity: 0;
 		z-index: 1;
+	}
+
+	.code-container-none{
+		display: none;
+		transform: translateX(100%);
 	}
 	
 	.container.right-panel-active .sign-up-container {
@@ -225,8 +238,13 @@
 		font-size: 600;
 		padding: 0px 12px;
 	}
+
+	.submit-button{
+		margin-top: 40px;
+	}
 	
 }
+
 
 // footer {
 //     background-color: #222;
