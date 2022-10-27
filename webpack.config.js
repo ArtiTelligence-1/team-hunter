@@ -12,7 +12,6 @@ const stylesHandler = isProduction
   : "style-loader";
 
 const config = {
-  // entry: "./src/index",
   entry: {
     app: path.join(__dirname, 'src', 'index.tsx')
   },
@@ -74,7 +73,12 @@ const config = {
         }]
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset",
       },
       // {

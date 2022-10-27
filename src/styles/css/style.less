@@ -551,24 +551,11 @@ ol {
   Hero
 -----------------------*/
 
-.hero__slider.owl-carousel .owl-item.active .hero__text h6 {
-	top: 0;
-	opacity: 1;
-}
-
-.hero__slider.owl-carousel .owl-item.active .hero__text h2 {
-	top: 0;
-	opacity: 1;
-}
-
-.hero__slider.owl-carousel .owl-item.active .hero__text p {
-	top: 0;
-	opacity: 1;
-}
-
-.hero__slider.owl-carousel .owl-item.active .hero__text .primary-btn {
-	top: 0;
-	opacity: 1;
+.hero__slider .swiper-slide-active .hero__text{
+	h6, h2, p, .primary-btn {
+		top: 0;
+		opacity: 1;
+	}
 }
 
 .hero__slider.owl-carousel .owl-nav button {
@@ -967,7 +954,7 @@ ol {
 	visibility: visible;
 }
 
-.product__item:hover .product__item__text h6 {
+.product__item:hover .product__item__text .h-product:not(.visible) {
 	opacity: 0;
 }
 
@@ -976,7 +963,8 @@ ol {
 }
 
 .product__item__pic {
-	height: 260px;
+	height: 14em;
+	width: 14em;
 	position: relative;
 	background-position: center center;
 }

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { HeartSrcIcon } from '../../components/ImgLoader';
+import ProductCard from '../../components/ProductCard';
+import ProductList from '../../components/ProductList';
 import BackgroundImage from '../../static/img/product/product-8.jpg';
 
 const Events = () => {
@@ -17,7 +20,7 @@ const Events = () => {
                     <div className="breadcrumb__text">
                         <h4>Shop</h4>
                         <div className="breadcrumb__links">
-                            <a href="./index.html">Home</a>
+                            <Link to="/">Home</Link>
                             <span>Shop</span>
                         </div>
                     </div>
@@ -133,34 +136,10 @@ const Events = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-lg-4 col-md-6 col-sm-6">
-                            <div className="product__item">
-                                <div className="product__item__pic set-bg" style ={ { backgroundImage: `url(${BackgroundImage})` } }>
-                                    <ul className="product__hover">
-                                        <HeartSrcIcon />
-                                    </ul>
-                                </div>
-                                <div className="product__item__text">
-                                    <h6>Basketball</h6>
-                                    <h6>On Pidvalna 16:00</h6>
-                                    <a href="shop-details.html" className="add-cart">+ Add To Cart</a>
-                                    <h5>2 / 4</h5>
-                                    <div className="product__color__select">
-                                        <label>
-                                            <input type="radio" id="pc-4"/>
-                                        </label>
-                                        <label className="active black">
-                                            <input type="radio" id="pc-5"/>
-                                        </label>
-                                        <label className="grey">
-                                            <input type="radio" id="pc-6"/>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {/* <div className="row w-fit">
+                            <ProductCard />
+                    </div> */}
+                    <ProductList />
                 </div>
             </div>
         </div>

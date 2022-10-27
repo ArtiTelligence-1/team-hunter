@@ -10,8 +10,7 @@ const Footer = () => (
           <div className="footer__about">
             <div className="footer__logo">
               <Link to="#">
-                {/* <img src="img/footer-logo.png" alt="">   */}
-                <LogoSrcIcon />
+                <LogoSrcIcon style={{ fill: "#fff" }} />
               </Link>
             </div>
             <p>The customer is at the heart of our unique business model, which includes design.</p>

@@ -16,11 +16,13 @@
     "react-phone-number-input": "^3.2.11",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "swiper": "^8.4.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "npm run serve",
     "start:react": "react-scripts start",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
     "build": "webpack --mode=production --node-env=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -48,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.5.0",
     "@webpack-cli/generators": "^2.5.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
