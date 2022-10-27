@@ -14,8 +14,8 @@ const Login = () => {
   const [rightPanelActive, setRightPanelActive] = useState(false);
   const SocialLoginBox = () => (
     <div className="social-container">
-      {/* <a href="#" className="social"><FontAwesomeIcon icon={faFacebook} /></a>
-      <a href="#" className="social"><FontAwesomeIcon icon={faGoogle} /></a> */}
+      <a href="#" className="social"><FontAwesomeIcon icon={faFacebook} /></a>
+      <a href="#" className="social"><FontAwesomeIcon icon={faGoogle} /></a>
     </div>
   );
   const [styleS, setStyle] = useState(true);
