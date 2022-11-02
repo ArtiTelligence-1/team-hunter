@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import MainLayout from '../modules/Layout';
+import Layout from '../modules/Layout';
+import { PrivateRoute } from './private-route';
 // import r from 'react-dom';
 
 // const Layout = React.lazy(() => import('../modules/Layout'));
@@ -13,21 +14,23 @@ const ProfilePage = React.lazy(() => /* webpackChunkName: "Profile" */  import('
 
 
 const SiteRouter = () => (
-    <BrowserRouter>
-        <Suspense>
-            <Routes>
-                <Route path='/login/*' element={<MainLayout><LoginPage /></MainLayout>} />
-                <Route path='/' element={<MainLayout><HomePage /></MainLayout>} />
-                <Route path='/Home' element={<MainLayout><HomePage /></MainLayout>} />
-                <Route path='/Events' element={<MainLayout><EventsPage /></MainLayout>} />
-                <Route path='/About' element={<MainLayout><AboutPage /></MainLayout>} />
-                <Route path='/Contact' element={<MainLayout><ContactPage /></MainLayout>} />
-                <Route path='/Profile' element={<MainLayout><ProfilePage /></MainLayout>} />
+  <BrowserRouter>
+    <Suspense>
+        <Routes>
+          <Route path='/' element={<Layout/>}>
+            <Route path='/login/*' element={<LoginPage />} />
+            <Route path='/' element={<HomePage />} />
+            <Route path='/Home' element={<HomePage />} />
+            <Route path='/Events' element={<EventsPage />} />
+            <Route path='/About' element={<AboutPage />} />
+            <Route path='/Contact' element={<ContactPage />} />
+            <Route path='/Profile' element={<PrivateRoute component={<ProfilePage />} />} />
 
-                <Route path='*' element={<Navigate to="/" />} />
-            </Routes>
-        </Suspense>
-    </BrowserRouter>
+            <Route path='*' element={<Navigate to="/" />} />
+          </Route> 
+        </Routes>
+    </Suspense>
+  </BrowserRouter>
 ) 
 
 export default SiteRouter;

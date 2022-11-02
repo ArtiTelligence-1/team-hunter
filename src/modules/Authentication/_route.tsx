@@ -1,11 +1,13 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from './Login';
 
 const LoginRouter = () => {
     return (
         <Routes>
             <Route path='signin' element={<Login />} />
+
+            <Route path='*' element={<Navigate to="signin" />} />
         </Routes>
     );
 };

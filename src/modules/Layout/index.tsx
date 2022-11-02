@@ -1,19 +1,23 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, Suspense } from 'react';
 
 import '../../styles/css/style.less';
 // import '../../styles/sass/_header.scss';
 // import '../../styles/sass/_footer.scss';
 import Header from '../Header';
 import Footer from '../Footer';
+import Loader from '../../components/Loader';
+import { Outlet } from 'react-router-dom';
 
-const MainLayout = ({ children }: {children: ReactElement<any, any>}) => {
-    return (
-        <>
-        <Header />
-            <React.Suspense fallback={<>...</>}>{children}</React.Suspense>
-        <Footer />
-        </>
-    )
+const Layout = () => {
+  return (
+    <div>
+      <Header />
+      <Suspense fallback='...'>
+        <Outlet />
+      </Suspense>
+      <Footer />
+    </div>
+  )
 }
 
-export default MainLayout;
+export default Layout;

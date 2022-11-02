@@ -7,11 +7,16 @@ import './index.css';
 import SiteRouter from './routing/site-route';
 import reportWebVitals from './reportWebVitals';
 
+import store from './core/store';
+import { Provider } from 'react-redux';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
-    <SiteRouter />
+    <Provider store={store}>
+      <SiteRouter />
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { LogoSrcIcon } from "../../components/ImgLoader";
+import { structureMap } from "../../routing/siteMapping";
 
 const Footer = () => (
   <footer className="footer">
@@ -20,9 +21,9 @@ const Footer = () => (
           <div className="footer__widget">
             <h6>TeamHunter</h6>
             <ul>
-              <li><Link to="events.html">Events</Link></li>
-              <li><Link to="about.html">About Us</Link></li>
-              <li><Link to="contact.html">Contact Us</Link></li>
+              {
+                structureMap("footer").map((item) => <li>{item.component}</li>)
+              }
             </ul>
           </div>
         </div>
