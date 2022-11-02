@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { AboutBGSrcIcon, TestimonialAuthorSrcIcon } from '../../components/ImgLoader'
-import Quote_BG from '../../static/img/about/quote_bg.jpg'
+import React, { useEffect, useState } from 'react';
+import { AboutBGSrcIcon, TestimonialAuthorSrcIcon } from '../../components/ImgLoader';
+import Quote_BG from '../../static/img/about/quote_bg.jpg';
 
 const About = () => (
   <>
@@ -141,4 +141,4 @@ const About = () => (
   </>
 )
 
-export default About
+export default About;

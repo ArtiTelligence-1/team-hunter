@@ -27,7 +27,7 @@
     "start": "npm run serve",
     "start:react": "react-scripts start",
     "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
-    "lint": "eslint --fix --ext .ts,.tsx .",
+    "lint": "eslint --fix --ext .ts,.tsx  --fix /home/writer/Documents/university/2th_course/team-work/team-hunter-front/src/modules/Events/index.tsx",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",

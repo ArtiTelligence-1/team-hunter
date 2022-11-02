@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { HeartSrcIcon } from '../../components/ImgLoader'
-import ProductCard from '../../components/ProductCard'
-import ProductList from '../../components/ProductList'
-import BackgroundImage from '../../static/img/product/product-13.jpg'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { HeartSrcIcon } from '../../components/ImgLoader';
+import ProductCard from '../../components/ProductCard';
+import ProductList from '../../components/ProductList';
+import BackgroundImage from '../../static/img/product/product-13.jpg';
 
 const Events = () => (
   <>
-
     {/* <!-- Breadcrumb Section Begin --> */}
     <section className="breadcrumb-option">
       <div className="container">
@@ -35,7 +34,9 @@ const Events = () => (
               <div className="shop__sidebar__search">
                 <form action=".">
                   <input type="text" placeholder="Search..." />
-                  <button type="submit"><span className="icon_search" /></button>
+                  <button type="submit">
+                    <span className="icon_search" />
+                  </button>
                 </form>
               </div>
               <div className="shop__sidebar__accordion">
@@ -44,14 +45,26 @@ const Events = () => (
                     <div className="card-heading">
                       <Link to=".">Sport</Link>
                     </div>
-                    <div id="collapseOne" className="collapse show" data-parent="#accordionExample">
+                    <div
+                      id="collapseOne"
+                      className="collapse show"
+                      data-parent="#accordionExample"
+                    >
                       <div className="card-body">
                         <div className="shop__sidebar__categories">
                           <ul className="nice-scroll">
-                            <li><Link to=".">Football</Link></li>
-                            <li><Link to=".">Volleyball</Link></li>
-                            <li><Link to=".">Basketball</Link></li>
-                            <li><Link to=".">Tennis</Link></li>
+                            <li>
+                              <Link to=".">Football</Link>
+                            </li>
+                            <li>
+                              <Link to=".">Volleyball</Link>
+                            </li>
+                            <li>
+                              <Link to=".">Basketball</Link>
+                            </li>
+                            <li>
+                              <Link to=".">Tennis</Link>
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -61,13 +74,23 @@ const Events = () => (
                     <div className="card-heading">
                       <Link to=".">Place</Link>
                     </div>
-                    <div id="collapseTwo" className="collapse show" data-parent="#accordionExample">
+                    <div
+                      id="collapseTwo"
+                      className="collapse show"
+                      data-parent="#accordionExample"
+                    >
                       <div className="card-body">
                         <div className="shop__sidebar__brand">
                           <ul>
-                            <li><Link to=".">Arena Lviv</Link></li>
-                            <li><Link to=".">Pidvalna Stad</Link></li>
-                            <li><Link to=".">Ukraine Stadium</Link></li>
+                            <li>
+                              <Link to=".">Arena Lviv</Link>
+                            </li>
+                            <li>
+                              <Link to=".">Pidvalna Stad</Link>
+                            </li>
+                            <li>
+                              <Link to=".">Ukraine Stadium</Link>
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -77,7 +100,11 @@ const Events = () => (
                     <div className="card-heading">
                       <Link to=".">Size</Link>
                     </div>
-                    <div id="collapseFour" className="collapse show" data-parent="#accordionExample">
+                    <div
+                      id="collapseFour"
+                      className="collapse show"
+                      data-parent="#accordionExample"
+                    >
                       <div className="card-body">
                         <div className="shop__sidebar__size">
                           <label>
@@ -150,6 +177,6 @@ const Events = () => (
     </section>
     {/* <!-- Shop Section End --> */}
   </>
-)
+);
 
-export default Events
+export default Events;

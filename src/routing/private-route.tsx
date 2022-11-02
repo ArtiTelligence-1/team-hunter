@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { AuthorizationType } from '../modules/Authentication/authorization-types';
+import AuthorizationType from '../modules/Authentication/authorization-types';
 
 const PrivateRoute = ({
   component: Component,
@@ -25,7 +25,7 @@ const PrivateRoute = ({
   if (!sessionLive) return <>...</>;
 
   return <Navigate to="/login" />;
-}
+};
 
 PrivateRoute.defaultProps = {
   props: undefined,

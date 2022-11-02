@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import Button from 'antd/lib/button'
-import Input from 'antd/lib/input'
-import Form from 'antd/lib/form'
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faGoogle, faTelegram } from '@fortawesome/free-brands-svg-icons'
+import React, { useState } from 'react';
+import Button from 'antd/lib/button';
+import Input from 'antd/lib/input';
+import Form from 'antd/lib/form';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle, faTelegram } from '@fortawesome/free-brands-svg-icons';
 
-import './Login.less'
-import { Alert } from 'antd'
-import { Link } from 'react-router-dom'
+import './Login.less';
+import { Alert } from 'antd';
+import { Link } from 'react-router-dom';
 
 const SocialLoginBox = () => (
   <div className="social-container">
@@ -20,7 +20,7 @@ const SocialLoginBox = () => (
 );
 
 const Login = () => {
-  const [rightPanelActive, setRightPanelActive] = useState(false)
+  const [rightPanelActive, setRightPanelActive] = useState(false);
 
   return (
     <div className="login-container">
@@ -43,7 +43,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
