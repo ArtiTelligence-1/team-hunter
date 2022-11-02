@@ -25,7 +25,7 @@ const PrivateRoute = ({
   if (!sessionLive) return <>...</>;
 
   return <Navigate to="/login" />;
-};
+}
 
 PrivateRoute.defaultProps = {
   props: undefined,

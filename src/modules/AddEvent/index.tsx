@@ -9,14 +9,14 @@ const { Option } = Select
 const { TextArea } = Input
 const onChange = (value: any) => {
   console.log(`selected ${value}`)
-};
+}
 
 const IntegerStep = () => {
   const [inputValue, setInputValue] = useState(1)
 
   const onChange = (newValue: any) => {
     setInputValue(newValue)
-  };
+  }
 
   return (
     <Row>
@@ -39,7 +39,7 @@ const IntegerStep = () => {
       </Col>
     </Row>
   )
-};
+}
 
 const props: UploadProps = {
   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -62,8 +62,8 @@ const props: UploadProps = {
           ctx.font = '33px Arial'
           ctx.fillText('Ant Design', 20, 20)
           canvas.toBlob((result) => resolve(result as any))
-        };
-      }
+        }
+      };
     });
   },
 }
@@ -71,7 +71,7 @@ const props: UploadProps = {
 const Profile = () => {
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value)
-  };
+  }
 
   const [value, setValue] = useState<string>('')
 
@@ -189,6 +189,6 @@ const Profile = () => {
       </div>
     </>
   )
-};
+}
 
 export default Profile

@@ -1,8 +1,8 @@
 import React from 'react'
-import { CompareSrcIcon, HeartSrcIcon, SearchSrcIcon } from './ImgLoader'
+import { Link } from 'react-router-dom'
+import { CompareSrcIcon, HeartSrcIcon, SearchSrcIcon } from './ImgLoader';
 
-import img from '../static/img/product/product-1.jpg'
-import { Link } from 'react-router-dom';
+import img from '../static/img/product/product-1.jpg';
 
 const ProductCard = () => {
   const label = ''
@@ -50,6 +50,6 @@ const ProductCard = () => {
     </div>
   // </div>
   )
-};
+}
 
 export default ProductCard

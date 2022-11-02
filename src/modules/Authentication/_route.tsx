@@ -1,6 +1,6 @@
-import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
-import Login from './Login'
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Login from './Login';
 
 const LoginRouter = () => (
   <Routes>
@@ -8,6 +8,6 @@ const LoginRouter = () => (
 
     <Route path="*" element={<Navigate to="signin" />} />
   </Routes>
-)
+);
 
-export default LoginRouter
+export default LoginRouter;

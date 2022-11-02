@@ -67,6 +67,6 @@ const Hero = () => {
         ))}
       </Swiper>
       );
-};
+}
 
 export default Hero;

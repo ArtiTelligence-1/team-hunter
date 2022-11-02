@@ -32,12 +32,12 @@ const IntegerStep = ({ ...props }) => {
       </Col>
     </Row>
   );
-};
+}
 
 const Profile = () => {
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value);
-  };
+  }
 
   const [value, setValue] = useState<string>('');
 
@@ -169,6 +169,6 @@ const Profile = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Profile;
