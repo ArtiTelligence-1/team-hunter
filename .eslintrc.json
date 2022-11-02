@@ -26,7 +26,10 @@
     "@typescript-eslint/consistent-type-assertions": "warn",
     "@typescript-eslint/semi": "warn",
     "@typescript-eslint/promise-function-async": "warn",
+    "implicit-arrow-linebreak": 0,
+    "import/no-dynamic-require": "warn",
     "@typescript-eslint/comma-dangle": 0,
+    "semi": ["error", "always"],
     "comma-dangle": [
       "error",
       {

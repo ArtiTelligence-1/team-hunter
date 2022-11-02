@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { linkStructure } from './models/routing-structures'
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { linkStructure } from './models/routing-structures';
 
 export const structure = {
   Login: {
@@ -32,7 +32,7 @@ export const structure = {
     caption: 'Profile',
     position: ['header'],
   } as linkStructure,
-}
+};
 
 export const structureMap = (position: string) => Object.values(structure)
   .filter((link) => link?.position?.includes(position) ?? false)
@@ -41,4 +41,4 @@ export const structureMap = (position: string) => Object.values(structure)
       <Link to={link.path}>{link.caption}</Link>
     ),
     isActive: useLocation().pathname === link.path,
-  }))
+  }));

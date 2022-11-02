@@ -1,7 +1,7 @@
 const Loader = () => (
-    <div id="preloder">
-        <div className="loader"></div>
-    </div>
-);
+  <div id="preloder">
+    <div className="loader" />
+  </div>
+)
 
-export default Loader;
+export default Loader
