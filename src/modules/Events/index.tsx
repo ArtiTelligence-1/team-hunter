@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { HeartSrcIcon } from '../../components/ImgLoader';
 import ProductCard from '../../components/ProductCard';
 import ProductList from '../../components/ProductList';
-import BackgroundImage from '../../static/img/product/product-8.jpg';
+import BackgroundImage from '../../static/img/product/product-13.jpg';
 
 const Events = () => {
 

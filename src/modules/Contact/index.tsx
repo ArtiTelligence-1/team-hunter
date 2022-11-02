@@ -40,7 +40,7 @@ const Contact = () => {
                                     <input type="text" placeholder="Email"/>
                                 </div>
                                 <div className="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
+                                    <textarea className="textarea_prop" placeholder="Message"></textarea>
                                     <button type="submit" className="site-btn">Send Message</button>
                                 </div>
                             </div>
