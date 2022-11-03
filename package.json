@@ -26,7 +26,7 @@
   "scripts": {
     "start": "npm run serve",
     "start:react": "react-scripts start",
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
+    "heroku-postbuild": "webpack --mode production --config ./webpack.config.js --progress",
     "lint": "eslint --fix --ext .js,.jsx .",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
