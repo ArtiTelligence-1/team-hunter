@@ -107,37 +107,37 @@ const Events = () => (
                     >
                       <div className="card-body">
                         <div className="shop__sidebar__size">
-                          <label>
+                          <label htmlFor="xs">
                             xs
-                            <input type="radio" id="xs" />
+                            <input name="size" type="radio" id="xs" />
                           </label>
-                          <label>
+                          <label htmlFor="sm">
                             s
-                            <input type="radio" id="sm" />
+                            <input name="size" type="radio" id="sm" />
                           </label>
-                          <label>
+                          <label htmlFor="md">
                             m
-                            <input type="radio" id="md" />
+                            <input name="size" type="radio" id="md" />
                           </label>
-                          <label>
+                          <label htmlFor="xl">
                             xl
-                            <input type="radio" id="xl" />
+                            <input name="size" type="radio" id="xl" />
                           </label>
-                          <label>
+                          <label htmlFor="2xl">
                             2xl
-                            <input type="radio" id="2xl" />
+                            <input name="size" type="radio" id="2xl" />
                           </label>
-                          <label>
+                          <label htmlFor="xxl">
                             xxl
-                            <input type="radio" id="xxl" />
+                            <input name="size" type="radio" id="xxl" />
                           </label>
-                          <label>
+                          <label htmlFor="3xl">
                             3xl
-                            <input type="radio" id="3xl" />
+                            <input name="size" type="radio" id="3xl" />
                           </label>
-                          <label>
+                          <label htmlFor="4xl">
                             4xl
-                            <input type="radio" id="4xl" />
+                            <input name="size" type="radio" id="4xl" />
                           </label>
                         </div>
                       </div>

@@ -22,7 +22,7 @@ const Footer = () => (
             <h6>TeamHunter</h6>
             <ul>
               {structureMap('footer').map((item) => (
-                <li>{item.component}</li>
+                <li key={item.component.key}>{item.component}</li>
               ))}
             </ul>
           </div>
@@ -32,9 +32,9 @@ const Footer = () => (
             <h6>NewLetter</h6>
             <div className="footer__newslatter">
               <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-              <form action='.'>
-                <input type='text' placeholder='Your email' />
-                <button type='submit'>
+              <form action=".">
+                <input type="text" placeholder="Your email" />
+                <button type="submit">
                   <span className="icon_mail_alt" />
                 </button>
               </form>
@@ -45,16 +45,18 @@ const Footer = () => (
       <div className="row">
         <div className="col-lg-12 text-center">
           <div className="footer__copyright__text">
-            {/* <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> */}
+            {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
             <p>
-              Copyright ©<script>document.write(new Date().getFullYear());</script>
+              Copyright ©
+              {new Date().getFullYear()}
               2020 All rights reserved | This template is made with
-              <i className="fa fa-heart-o" aria-hidden="true" /> by
-              <Link to='.' target='_blank'>
+              <i className="fa fa-heart-o" aria-hidden="true" />
+              by
+              <Link to="." target="_blank">
                 ArtiTelligence
               </Link>
             </p>
-            {/* <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> */}
+            {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import { List } from 'antd'
-import React from 'react'
-import ProductCard from './ProductCard'
+import { List } from 'antd';
+import React from 'react';
+import ProductCard from './ProductCard';
 
 const ProductList = () => (
   <List
@@ -12,7 +12,6 @@ const ProductList = () => (
       lg: 3,
       column: 4,
     }}
-
     dataSource={[
       1, 2, 3, 4, 5,
     ]}
@@ -20,6 +19,6 @@ const ProductList = () => (
       <ProductCard />
     )}
   />
-)
+);
 
-export default ProductList
+export default ProductList;

@@ -22,13 +22,14 @@
     "react"
   ],
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": "warn",    
-    "@typescript-eslint/consistent-type-assertions": "warn",
-    "@typescript-eslint/semi": "warn",
+    "@typescript-eslint/explicit-function-return-type": 0,    
+    "@typescript-eslint/consistent-type-assertions": 0,
     "@typescript-eslint/promise-function-async": "warn",
-    "implicit-arrow-linebreak": 0,
     "import/no-dynamic-require": "warn",
+    "@typescript-eslint/semi": 0,
     "@typescript-eslint/comma-dangle": 0,
+    "react/jsx-props-no-spreading": 0,
+    "implicit-arrow-linebreak": 0,
     "semi": ["error", "always"],
     "comma-dangle": [
       "error",
