@@ -1,5 +1,5 @@
 export interface linkStructure {
-    path: string;
-    caption: string;
-    position?: string[];
-};
+  path: string
+  caption: string
+  position?: string[]
+}

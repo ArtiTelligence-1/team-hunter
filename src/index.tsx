@@ -4,12 +4,11 @@ import ReactDOM from 'react-dom/client';
 import './styles/sass/style.scss';
 import './index.css';
 
+import { Provider } from 'react-redux';
 import SiteRouter from './routing/site-route';
 import reportWebVitals from './reportWebVitals';
 
 import store from './core/store';
-import { Provider } from 'react-redux';
-
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(

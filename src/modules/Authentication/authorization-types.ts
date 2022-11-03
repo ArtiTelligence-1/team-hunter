@@ -1,4 +1,6 @@
-export enum AuthorizationType{
-    Anonymous,
-    General
+enum AuthorizationType {
+  Anonymous,
+  General
 }
+
+export default AuthorizationType;

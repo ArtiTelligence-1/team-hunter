@@ -22,7 +22,7 @@ const config = {
     publicPath: '/',
   },
   devServer: {
-    open: true,
+    open: false,
     host: "localhost",
     historyApiFallback: true,
   },
