@@ -15,7 +15,7 @@ const AddEventPage = React.lazy(async () => /* webpackChunkName: "Profile" */ aw
 
 const SiteRouter = () => (
   <BrowserRouter>
-    <Suspense>
+    <Suspense fallback="...">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/login/*" element={<LoginPage />} />
