@@ -1,6 +1,7 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
@@ -25,8 +26,16 @@ const config = {
     open: false,
     host: "localhost",
     historyApiFallback: true,
+    client: {
+      overlay: {
+        warnings: false
+      },
+    }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      process: {env: {}}
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),

@@ -8,6 +8,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@googlemaps/js-api-loader": "^1.15.1",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -17,8 +19,6 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-geocode": "^0.2.3",
-    "react-google-autocomplete": "^2.7.0",
     "react-phone-number-input": "^3.2.11",
     "react-places-autocomplete": "^7.3.0",
     "react-redux": "^8.0.4",
@@ -36,7 +36,7 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve --env .env"
   },
   "eslintConfig": {
     "extends": [
@@ -59,10 +59,10 @@
   "devDependencies": {
     "@svgr/webpack": "^6.5.0",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
+    "@types/react-places-autocomplete": "^7.2.9",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "@webpack-cli/generators": "^2.5.0",
-    "@types/react-places-autocomplete": "^7.2.9",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
     "eslint": "^8.26.0",

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Select, Col, InputNumber, Row, Slider, Input } from 'antd';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
+import './index.less';
 
 const { TextArea } = Input;
 
