@@ -4,11 +4,6 @@ import { Alert, Space, UploadProps } from 'antd'
 import { Select, Col, InputNumber, Row, Slider, Input, Button, Upload, DatePicker, TimePicker, AutoComplete } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import 'react-phone-number-input/style.css'
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  geocodeByPlaceId,
-  getLatLng
-} from 'react-places-autocomplete'
 
 import './index.less';
 import '../Profile/index.less';

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { faLessThanEqual } from '@fortawesome/free-solid-svg-icons';
 
 import { CompareSrcIcon, HeartSrcIcon, SearchSrcIcon } from './ImgLoader';
 import img from '../static/img/product/product-1.jpg';
