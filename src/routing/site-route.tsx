@@ -12,6 +12,7 @@ const AboutPage = React.lazy(async () => /* webpackChunkName: "About" */ await i
 const ContactPage = React.lazy(async () => /* webpackChunkName: "Contact" */ await import('../modules/Contact'));
 const ProfilePage = React.lazy(async () => /* webpackChunkName: "Profile" */ await import('../modules/Profile'));
 const AddEventPage = React.lazy(async () => /* webpackChunkName: "Profile" */ await import('../modules/AddEvent'));
+const EventPage = React.lazy(async () => /* webpackChunkName: "Profile" */ await import('../modules/Event'));
 
 const SiteRouter = () => (
   <BrowserRouter>
@@ -26,6 +27,7 @@ const SiteRouter = () => (
           <Route path="/Contact" element={<ContactPage />} />
           <Route path="/Profile" element={<PrivateRoute component={<ProfilePage />} />} />
           <Route path="/Addevent" element={<AddEventPage />} />
+          <Route path="/Event" element={<EventPage />} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
