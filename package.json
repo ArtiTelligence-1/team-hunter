@@ -28,7 +28,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm run serve",
+    "start": "node server.js",
     "start:react": "react-scripts start",
     "heroku-postbuild": "webpack --mode production --config ./webpack.config.js --progress",
     "lint": "eslint --fix --ext .js,.jsx .",
