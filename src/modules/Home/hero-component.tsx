@@ -1,28 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { Hero1SrcIcon, Hero2SrcIcon } from '../../components/ImgLoader';
 import { Navigation, Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/navigation';
 import 'swiper/css';
 
-import Loader from '../../components/Loader';
 
 const Hero = () => {
-  const importAll = async (require: __WebpackModuleApi.RequireContext): Promise<string[]> =>
-    await Promise.all(require.keys().map((value) => require(`${value}`)));
+  // const importAll = async (require: __WebpackModuleApi.RequireContext): Promise<string[]> =>
+  //   await Promise.all(require.keys().map((value) => require(`${value}`)));
 
-  const [heroes, setHeroes] = useState<string[]>();
+  // const [heroes, setHeroes] = useState<string[]>();
 
-  useEffect(() => {
-    importAll(require.context('../../static/img/hero', false, /\.(png|jpe?g|svg)$/, 'lazy'))
-      .then((e) => setHeroes(e))
-      .catch(() => {});
-  }, []);
+  // useEffect(() => {
+  //   importAll(require.context('../../static/img/hero', false, /\.(png|jpe?g|svg)$/, 'lazy'))
+  //     .then((e) => setHeroes(e))
+  //     .catch(() => {});
+  // }, []);
+  const swiperContent = [
+    {
+      photo: Hero1SrcIcon,
+      title: "Together, we can do so much!",
+      descritpion: "Find your team and enjoy time spent with them"
+    },
+    {
+      photo: Hero2SrcIcon,
+      title: "Age is not a barrier",
+      descritpion: "No matter how old you are everything is in your hands"
+    }
+  ]
 
-  return heroes === undefined
-    ? <Loader />
-    : (
+  return(
       <Swiper
         className="hero__slider"
         modules={[Navigation, Autoplay, Pagination]}
@@ -31,33 +40,29 @@ const Hero = () => {
         loop
         pagination={{ clickable: true }}
       >
-        { heroes.map((item) => (
-          <SwiperSlide key={item}>
+        { swiperContent.map((item) => (
+          <SwiperSlide key={item.photo}>
             <div
               className="hero__items set-bg active"
-              style={{ backgroundImage: `url(${item})` }}
-              data-setbg={item}
+              style={{ backgroundImage: `url(${item.photo})` }}
+              data-setbg={item.photo}
             >
               <div className="container">
                 <div className="row">
                   <div className="col-xl-5 col-lg-7 col-md-8">
                     <div className="hero__text">
-                      <h6>Summer Collection</h6>
-                      <h2>Fall - Winter Collections 2030</h2>
-                      <p>
-                        A specialist label creating luxury essentials. Ethically crafted with an
-                        unwavering commitment to exceptional quality.
-                      </p>
-                      <Link to="." className="primary-btn">
-                        Shop now
+                      <h2>{item.title}</h2>
+                      <p>{item.descritpion}</p>
+                      <Link to="/Events" className="primary-btn">
+                        Find event
                         <span className="arrow_right" />
                       </Link>
-                      <div className="hero__social">
+                      {/* <div className="hero__social">
                         <Link to="."><i className="fa fa-facebook" /></Link>
                         <Link to="."><i className="fa fa-twitter" /></Link>
                         <Link to="."><i className="fa fa-pinterest" /></Link>
                         <Link to="."><i className="fa fa-instagram" /></Link>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

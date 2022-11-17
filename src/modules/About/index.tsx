@@ -1,8 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { AboutBGSrcIcon, TestimonialAuthorSrcIcon } from '../../components/ImgLoader';
+import { AboutBGSrcIcon, TestimonialAuthorSrcIcon, 
+  VladPhotoSrcIcon, BogdanPhotoSrcIcon, DmytroPhotoSrcIcon, RomanPhotoSrcIcon } from '../../components/ImgLoader';
 import Quote_BG from '../../static/img/about/quote_bg.jpg';
 
-const About = () => (
+const About = () => {
+  const teamContent = [
+    {
+      photo: VladPhotoSrcIcon,
+      name: "Vladyslav Moiseienko",
+      role: "Front-end developer"
+    },
+    {
+      photo: BogdanPhotoSrcIcon,
+      name: "Bogdan Drushkevych",
+      role: "Front-end developer"
+    },
+    {
+      photo: DmytroPhotoSrcIcon,
+      name: "Dmytro Pavliv",
+      role: "Back-end developer"
+    },
+    {
+      photo: RomanPhotoSrcIcon,
+      name: "Roman Kindrat",
+      role: "Back-end developer"
+    }
+  ]
+
+  return(
   <>
     {/* <!-- Breadcrumb Section Begin --> */}
     <section className="breadcrumb-option">
@@ -109,40 +134,21 @@ const About = () => (
             </div>
           </div>
         </div>
+        
         <div className="row">
+        { teamContent.map((item) => (
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="team__item">
-              {/* <img src="img/about/team-11.jpg" alt=""> */}
-              <h4>Vladyslav Moiseienko</h4>
-              <span>Front-end developer</span>
+              <item.photo/>
+              <h4>{item.name}</h4>
+              <span>{item.role}</span>
             </div>
-          </div>
-          <div className="col-lg-3 col-md-6 col-sm-6">
-            <div className="team__item">
-              {/* <img src="img/about/team-22.jpg" alt=""> */}
-              <h4>Bogdan Drushkevych</h4>
-              <span>Front-end developer</span>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6 col-sm-6">
-            <div className="team__item">
-              {/* <img src="img/about/team-33.jpg" alt=""> */}
-              <h4>Roman Kindrat</h4>
-              <span>Back-end developer</span>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6 col-sm-6">
-            <div className="team__item">
-              {/* <img src="img/about/team-44.jpg" alt=""> */}
-              <h4>Dmytro Pavliv</h4>
-              <span>Back-end developer</span>
-            </div>
-          </div>
+          </div>))}
         </div>
       </div>
     </section>
     {/* <!-- Team Section End --> */}
   </>
-);
+)};
 
 export default About;
