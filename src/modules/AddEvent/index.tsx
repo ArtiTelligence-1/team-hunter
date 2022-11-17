@@ -119,7 +119,7 @@ const AddEvent = () => {
   const eventFields = [
     {
       label: 'Title',
-      child: <input className='form-control' type='text' placeholder='Title'/>,
+      child: <Input type='text' placeholder='Title'/>,
     },
     {
       label: 'King of Sport',
@@ -142,7 +142,7 @@ const AddEvent = () => {
     {
       label: 'Location',
       child: <MapsInput />,
-      // (<><input className='form-control' type='text' placeholder='Title'/>
+      // (<><Input type='text' placeholder='Title'/>
       // <SomeFunc />
       // <Soasdjfo/></>),
     },

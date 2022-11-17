@@ -1,6 +1,8 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { createRef, useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { Wrapper, Status } from '@googlemaps/react-wrapper';
 import { Loader } from '@googlemaps/js-api-loader';
+import { Button, List } from 'antd';
+import Input from '../../components/input';
 
 const render = (status: Status) => {
   switch (status) {
@@ -35,33 +37,85 @@ const MyMapComponent = ({
 };
 
 const MapsInput = () => {
+  const [autocompleteService,
+    setAutocompleteService] = useState<google.maps.places.AutocompleteService>();
+  const [locationService, setLocationService] = useState<google.maps.places.PlacesService>();
   const [place, setPlace] = useState('');
+  const [predictions, setPredictions] = useState<google.maps.places.AutocompletePrediction[]>();
+  const mapRef = React.useRef<HTMLDivElement>(null);
+  const [map, setMap] = React.useState<google.maps.Map>();
+  const [marker, setMarker] = React.useState<google.maps.Marker>();
 
   useEffect(() => {
-    console.log(place);
+    const loader = new Loader({
+      apiKey: 'AIzaSyCV5zbKUfBZ-SwJ60oASNX-j2YiHMC0HG8',
+      libraries: ['places'],
+    });
+    loader.loadCallback((e) => {
+      if (e?.error !== undefined) {
+        console.error(e);
+      } else {
+        const mapTemp = new window.google.maps.Map(mapRef.current!, {});
+        mapTemp.setOptions({ zoom: 7 });
+        setAutocompleteService(new window.google.maps.places.AutocompleteService());
+        setMap(mapTemp);
+        setLocationService(new google.maps.places.PlacesService(mapTemp));
+      }
+    });
+  }, []);
+
+  // console.log(autocomplete);
+  useEffect(() => {
+    if (autocompleteService !== undefined) {
+      autocompleteService.getPlacePredictions({ input: place })
+        .then((ew) => {
+          console.log(ew.predictions.filter((item) => item.description === place).length);
+          const exactMatch = ew.predictions.filter((item) => item.description === place);
+          if (exactMatch.length) {
+            setPredictions([]);
+            locationService?.getDetails(
+              { placeId: exactMatch[0].place_id },
+              (plc, status) => {
+                const locatin = plc!.geometry!.location!;
+                map?.setCenter(locatin);
+                setMarker(new google.maps.Marker({
+                  position: locatin,
+                  map: map,
+                }));
+              }
+            );
+            // map?.setCenter(exactMatch[0].place_id);
+            return;
+          }
+          setPredictions(ew.predictions);
+          // if (ew.predictions.filter(item => item.description == place)) {
+          // }
+        })
+        .catch(() => {});
+    }
   }, [place]);
 
-  const loader = new Loader({
-    apiKey: 'AIzaSyCV5zbKUfBZ-SwJ60oASNX-j2YiHMC0HG8',
-    libraries: ['places'],
-  });
+  console.log(predictions);
 
-  loader.loadCallback((e) => {
-    // if (e.error) {
-    console.log(e);
-    // } else {
-    // console.log(window.google.maps);
-    const auto = new window.google.maps.places.AutocompleteService();
-    console.log(auto.getPlacePredictions({ input: 'some' }).then((ew) => console.log(ew)));
-    // new google.maps.Map(document.getElementById("map"), mapOptions);
-    // }
-  });
-
-  console.log(process.env);
   return (
     <>
-      {/* <Wrapper apiKey="AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0" render={render} /> */}
-      <input value={place} onInput={(e) => setPlace(e.currentTarget.value)} />
+      <Input value={place} onInput={(e) => setPlace(e.currentTarget.value)} />
+      {predictions?.length ?
+          (
+            <List
+              dataSource={predictions.filter((item) => item.description !== place)}
+              renderItem={(item) => (
+                <Button type="link" onClick={() => setPlace(item.description)}>
+                  {item.description.slice(0, 40)}
+                  {item.description.length > 40 ? '...' : ''}
+                </Button>
+              )}
+              size="small"
+              // bordered
+            />
+          )
+        : null}
+      <div ref={mapRef} style={{ height: '10em' }} />
     </>
   );
 };
