@@ -115,7 +115,7 @@ const MapsInput = () => {
             />
           )
         : null}
-      <div ref={mapRef} style={{ height: '10em' }} />
+      <div ref={mapRef} className="mt-2" style={{ height: place && !predictions?.length ? '10em' : 0 }} />
     </>
   );
 };
