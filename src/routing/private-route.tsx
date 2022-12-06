@@ -18,7 +18,7 @@ const PrivateRoute = ({
   };
 
   // const newLocation = authenticationRedirect(isAuthenticated, location);
-  const authorizedLocation = location.pathname === '/Profile';
+  const authorizedLocation = location.pathname !== '/Profile';
 
   if (authorizationType !== AuthorizationType.Anonymous && !authorizedLocation) return Component;
 
