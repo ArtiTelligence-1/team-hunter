@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
 import moment from 'moment';
-
-import { AboutBGSrcIcon, TestimonialAuthorSrcIcon } from '../../components/ImgLoader';
+import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
 import Quote_BG from '../../static/img/about/quote_bg.jpg';
 
 const { TextArea } = Input;
@@ -58,6 +57,8 @@ interface EditorProps {
   value: string
 }
 
+const AnyReactComponent = (text: any) => <div>{text}</div>;
+
 const CommentList = ({ comments }: { comments: CommentItem[] }) => (
   <List
     dataSource={comments}
@@ -84,6 +85,13 @@ const Event = () => {
   const [comments, setComments] = useState<CommentItem[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState('');
+
+  const containerStyle = {
+    width: '500px',
+    height: '200px',
+  };
+
+  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
 
   const handleSubmit = () => {
     if (!value) return;
@@ -112,51 +120,49 @@ const Event = () => {
     <section className="shop-details">
       <div className="breadcrumb-option">
         <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="breadcrumb__text">
-                  <h4>Event Details</h4>
-                  <div className="breadcrumb__links">
-                    <a href="./index.html">Home</a>
-                    <a href="./events.html">Events</a>
-                    <span>Event Details</span>
-                  </div>
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="breadcrumb__text">
+                <h4>Event Details</h4>
+                <div className="breadcrumb__links">
+                  <a href="./index.html">Home</a>
+                  <a href="./events.html">Events</a>
+                  <span>Event Details</span>
                 </div>
               </div>
-              {/* <div className="col-md-6">
-                <div className="shop__product__option__right">
-                  <Link to="/AddEvent" className="site-btn">Add Event</Link>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
-        <div
-          className="product__details__content"
-          style={{ marginBottom: '20px' }}
-        >
+      </div>
+      <div
+        className="product__details__content"
+        style={{ marginBottom: '20px' }}
+      >
         <div className="container">
-          <div className='row' style={{ marginTop: '60px'}}>
-            <div className='col-md-6'>
+          <div className="row" style={{ marginTop: '60px' }}>
+            <div className="col-md-6">
               <div style={{ alignContent: 'center' }}>
                 <Image
                   width={600}
                   height={500}
                   src={Quote_BG}
                 />
-                {/* <div className="testimonial__pic set-bg" style={{ backgroundImage: `url(${Quote_BG})` }} /> */}
               </div>
             </div>
-            <div className='col-md-6'  style={{ alignItems: "center", display: "flex"}}>
+            <div className="col-md-6" style={{ alignItems: 'center', display: 'flex' }}>
               <div className="row justify-content-center">
                 <div className="col-lg-10">
                   <div className="product__details__text">
                     <h4>Hooded thermal anorak</h4>
                     <h3>2 / 10</h3>
-                    <p className='eventDescription'>A Pocket PC is a handheld computer, which features many of the same
-                          a touchscreen and touchpad.
-                          As is the case with any new technology product, the cost of a Pocket PC
-                          $350.00, a new Pocket PC can now be purchased.</p>
+                    <p className="eventDescription">A Pocket PC is a handheld computer, which features many of the same a touchscreen and touchpad. As is the case with any new technology product, the cost of a Pocket PC $350.00, a new Pocket PC can now be purchased.</p>
+                    <div className="mapDisplay">
+                      <LoadScript googleMapsApiKey="AIzaSyCV5zbKUfBZ-SwJ60oASNX-j2YiHMC0HG8">
+                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
+                          <MarkerF position={center} />
+                        </GoogleMap>
+                      </LoadScript>
+                    </div>
                     {/* <div className="product__details__btns__option">
                       <Link to="/">
                         <i className="fa fa-heart" />

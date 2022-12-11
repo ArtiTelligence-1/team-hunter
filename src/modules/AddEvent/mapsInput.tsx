@@ -99,7 +99,7 @@ const MapsInput = () => {
 
   return (
     <>
-      <Input type='text' value={place} onInput={(e) => setPlace(e.currentTarget.value)} />
+      <Input type="text" value={place} onInput={(e) => setPlace(e.currentTarget.value)} />
       {predictions?.length ?
           (
             <List
@@ -115,7 +115,7 @@ const MapsInput = () => {
             />
           )
         : null}
-      <div className='mapDisplay'>
+      <div className="mapDisplay">
         <div ref={mapRef} className="mt-2" style={{ height: place && !predictions?.length ? '10em' : 0 }} />
       </div>
     </>

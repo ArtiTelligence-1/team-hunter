@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@googlemaps/js-api-loader": "^1.15.1",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@react-google-maps/api": "^2.17.1",
     "@reduxjs/toolkit": "^1.8.6",
     "@types/webpack-env": "^1.18.0",
     "antd": "^4.23.5",
@@ -52,6 +53,8 @@
     ]
   },
   "devDependencies": {
+    "@iconify/icons-mdi": "^1.2.34",
+    "@iconify/react": "^4.0.1",
     "@svgr/webpack": "^6.5.0",
     "@types/google-map-react": "^2.1.7",
     "@types/react-dom": "^18.0.9",
