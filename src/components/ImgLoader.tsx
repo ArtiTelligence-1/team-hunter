@@ -23,7 +23,7 @@ export const CompareSrcIcon = (props?: any) => <img src={CompareSrc} alt="Compar
 export const SearchSrcIcon = (props?: any) => <img src={SearchSrc} alt="Search" {...props} />;
 export const ProdSaleSrcIcon = (props?: any) => <img src={ProdSaleSrc} alt="ProdSale" {...props} />;
 export const AboutBGSrcIcon = (props?: any) => <img src={AboutBGSrc} alt="AboutBG" {...props} />;
-export const Hero1SrcIcon  = Hero1Src;
+export const Hero1SrcIcon = Hero1Src;
 export const Hero2SrcIcon = Hero2Src;
 export const VladPhotoSrcIcon = (props?: any) => <img src={VladPhotoSrc} alt="VladPhoto" {...props} />;
 export const BogdanPhotoSrcIcon = (props?: any) => <img src={BogdanPhotoSrc} alt="BogdanPhoto" {...props} />;
