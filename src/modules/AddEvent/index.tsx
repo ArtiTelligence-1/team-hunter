@@ -114,7 +114,7 @@ const AddEvent = () => {
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value)
   }
-  const sport_kinds = ['football', 'tennis', 'basketball'];
+  const sport_types = ['football', 'tennis', 'basketball'];
 
   const eventFields = [
     {
@@ -122,16 +122,22 @@ const AddEvent = () => {
       child: <Input type='text' placeholder='Title'/>,
     },
     {
-      label: 'King of Sport',
-      child: <Selecter className="selectdiv" defaultOption="Choose a king of sport..." values={sport_kinds} />,
+      label: 'Type of Sport',
+      child: <select id="typeOfSport" className="selectdiv">
+      <option selected> Choose.. </option>
+      {sport_types.map(type => (
+        <option>{type}</option>
+      )
+    )}
+      </select>,
     },
     {
-      label: 'Num of People',
-      child: <SliderStepper max={50} />,
+      label: 'Participants Limit',
+      child: (<div className="sliderDiv"><SliderStepper max={50} /></div>),
     },
     {
       label: 'Age Interval',
-      child: <SliderStepper range max={80} />,
+      child: (<div className="sliderDiv"><SliderStepper range max={80} /></div>),
     },
     {
       label: 'Time',
@@ -206,118 +212,5 @@ const AddEvent = () => {
   </>
   )
 }
-
-// const mockVal = (str: string, repeat = 1) => ({
-//   value: str.repeat(repeat),
-// });
-
-// export const SomeFunc = () => {
-//   const [address, setAddress] = React.useState("");
-
-//   const handleSelect = async (value: any) => {
-//     const results = await geocodeByAddress(value);
-//     alert(results);
-//   };
-
-//   const [value, setValue] = useState('');
-//   const [options, setOptions] = useState<{ value: string }[]>([]);
-
-//   const onSearch = (searchText: string) => {
-//     setOptions(
-//       !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
-//     );
-//     console.log('onSelect', setOptions);
-//   };
-
-//   const onSelect = (data: string) => {
-//     console.log('onSelect', data);
-//   };
-
-//   const onChange = (data: string) => {
-//     setValue(data);
-//   };
-
-  
-//   const [currentValue, setCurrentValue] = useState('')
-
-//   return (
-//     <div>
-//       <PlacesAutocomplete
-//         value={address}
-//         onChange={setAddress}
-//         onSelect={handleSelect}
-//       >
-//         {({ getInputProps, suggestions }: {getInputProps: any, suggestions: any }) => (
-//           <div>
-//             <AutoComplete
-//               options={suggestions.map((suggestion: any) => ({label: suggestion.description}))}
-//               style={{ width: 200 }}
-//               onSelect={(value: any)=> {
-//                   setCurrentValue(value),
-//                   value.getInputProps()
-//               }}
-//               placeholder="Enter your text"
-//             />
-//             <input {...getInputProps({ placeholder: "Type address" })} />
-//             <div className="autocomplete-dropdown-container">
-//               {suggestions.map((suggestion: any) => {
-//                 return (
-//                   <div>
-//                     {suggestion.description}
-//                   </div>
-//                 );
-//               })}
-//             </div>
-//           </div>
-//         )}
-//       </PlacesAutocomplete>
-//     </div>
-//   );
-// }
-
-
-// export function Soasdjfo() {
-//   const [address, setAddress] = React.useState("");
-//   const [coordinates, setCoordinates] = React.useState({
-//     lat: null,
-//     lng: null
-//   });
-
-//   const handleSelect = async (value: any) => {
-//     console.log(value)
-//     const results = await geocodeByAddress(value);
-//     const latLng = await getLatLng(results[0]);
-//     setAddress(value);
-//   };
-
-//   return (
-//     <div>
-//       <PlacesAutocomplete
-//         value={address}
-//         onChange={setAddress}
-//         onSelect={handleSelect}
-//       >
-//         {({ getInputProps, suggestions, getSuggestionItemProps, loading }: { getInputProps: any, suggestions: any, getSuggestionItemProps: any, loading: any} ) => (
-//           <div>
-//             <p>Latitude: {coordinates.lat}</p>
-//             <p>Longitude: {coordinates.lng}</p>
-
-//             <input {...getInputProps({ placeholder: "Type address" })} />
-
-//             <div>
-//               {suggestions.map((suggestion: any) => {
-//                 return (
-//                   <div {...getSuggestionItemProps(suggestion)}>
-//                     {suggestion.description}
-//                   </div>
-//                 );
-//               })}
-//             </div>
-//           </div>
-//         )}
-//       </PlacesAutocomplete>
-//     </div>
-//   );
-// }
 
 export default AddEvent

@@ -26,6 +26,7 @@
     "@typescript-eslint/consistent-type-assertions": 0,
     "@typescript-eslint/strict-boolean-expressions": 0,
     "operator-linebreak": 0,
+    "linebreak-style": ["error", "windows"],
     "@typescript-eslint/promise-function-async": "warn",
     "import/no-dynamic-require": "warn",
     "@typescript-eslint/semi": 0,
