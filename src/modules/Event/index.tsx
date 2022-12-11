@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
+import { Image, Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
 import moment from 'moment';
 
 import { AboutBGSrcIcon, TestimonialAuthorSrcIcon } from '../../components/ImgLoader';
@@ -110,54 +110,65 @@ const Event = () => {
   };
   return (
     <section className="shop-details">
-      <div className="product__details__pic">
+      <div className="breadcrumb-option">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="product__details__breadcrumb">
-                <Link to="/">Home</Link>
-                <Link to="/events">Events</Link>
-                <span>Event Details</span>
-              </div>
-            </div>
-          </div>
-          <div style={{ alignContent: 'center' }}>
-            <div className="tab-content">
-              <div className="tab-pane active" id="tabs-1" role="tabpanel">
-                <div className="product__details__pic__item">
-                  <div className="testimonial__pic set-bg" style={{ backgroundImage: `url(${Quote_BG})` }} />
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="breadcrumb__text">
+                  <h4>Event Details</h4>
+                  <div className="breadcrumb__links">
+                    <a href="./index.html">Home</a>
+                    <a href="./events.html">Events</a>
+                    <span>Event Details</span>
+                  </div>
                 </div>
               </div>
+              {/* <div className="col-md-6">
+                <div className="shop__product__option__right">
+                  <Link to="/AddEvent" className="site-btn">Add Event</Link>
+                </div>
+              </div> */}
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="product__details__content"
-        style={{ marginBottom: '20px' }}
-      >
+        <div
+          className="product__details__content"
+          style={{ marginBottom: '20px' }}
+        >
         <div className="container">
-          <div className="row d-flex justify-content-center">
-            <div className="col-lg-8">
-              <div className="product__details__text">
-                <h4>Hooded thermal anorak</h4>
-                <h3>2 / 10</h3>
-                <p>
-                  Coat with quilted lining and an adjustable hood.
-                  Featuring long sleeves with adjustable cuff tabs,
-                  adjustable asymmetric hem with elastic side tabs
-                  and a front zip fastening with placket.
-                </p>
-                <div className="product__details__btns__option">
-                  <Link to="/">
-                    <i className="fa fa-heart" />
-                    add to wishlist
-                  </Link>
-                </div>
-                <div className="product__details__cart__option">
-                  <Link to="/" className="primary-btn">
-                    Join
-                  </Link>
+          <div className='row' style={{ marginTop: '60px'}}>
+            <div className='col-md-6'>
+              <div style={{ alignContent: 'center' }}>
+                <Image
+                  width={600}
+                  height={500}
+                  src={Quote_BG}
+                />
+                {/* <div className="testimonial__pic set-bg" style={{ backgroundImage: `url(${Quote_BG})` }} /> */}
+              </div>
+            </div>
+            <div className='col-md-6'  style={{ alignItems: "center", display: "flex"}}>
+              <div className="row justify-content-center">
+                <div className="col-lg-10">
+                  <div className="product__details__text">
+                    <h4>Hooded thermal anorak</h4>
+                    <h3>2 / 10</h3>
+                    <p className='eventDescription'>A Pocket PC is a handheld computer, which features many of the same
+                          a touchscreen and touchpad.
+                          As is the case with any new technology product, the cost of a Pocket PC
+                          $350.00, a new Pocket PC can now be purchased.</p>
+                    {/* <div className="product__details__btns__option">
+                      <Link to="/">
+                        <i className="fa fa-heart" />
+                        add to wishlist
+                      </Link>
+                    </div> */}
+                    <div className="product__details__cart__option">
+                      <Link to="/" className="primary-btn">
+                        Join
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -165,8 +176,8 @@ const Event = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="product__details__tab">
-                <Tabs defaultActiveKey="1">
-                  <Tabs.TabPane tab="Additional information" key="1">
+                <Tabs defaultActiveKey="2">
+                  {/* <Tabs.TabPane tab="Description" key="1">
                     <div
                       className="product__details__tab__content"
                       style={{ marginBottom: '100px' }}
@@ -196,7 +207,7 @@ const Event = () => {
                         </p>
                       </div>
                     </div>
-                  </Tabs.TabPane>
+                  </Tabs.TabPane> */}
                   <Tabs.TabPane tab="Discussion" key="2">
                     <List
                       className="comment-list"
