@@ -62,13 +62,14 @@ const Profile = () => {
   const handleCancel = () => setPreviewOpen(false);
 
   const handlePreview = async (file: UploadFile) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj as RcFile);
+    const fileUpload = file;
+    if (!fileUpload.url && !fileUpload.preview) {
+      fileUpload.preview = await getBase64(fileUpload.originFileObj as RcFile);
+      setPreviewImage(fileUpload.url ?? (fileUpload.preview as string));
+      setPreviewOpen(true);
+      setPreviewTitle(fileUpload.name || fileUpload.url!.substring(fileUpload.url!.lastIndexOf('/') + 1));
     }
 
-    setPreviewImage(file.url || (file.preview as string));
-    setPreviewOpen(true);
-    setPreviewTitle(file.name || file.url!.substring(file.url!.lastIndexOf('/') + 1));
   };
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
@@ -92,17 +93,21 @@ const Profile = () => {
     },
     {
       label: 'Sex',
-      child: <select id="sex" className="selectdiv">
-        <option selected> Choose.. </option>
-        <option>Male</option>
-        <option>Female</option>
-      </select>,
+      child: (
+        <select id="sex" className="selectdiv">
+          <option selected> Choose.. </option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      ),
     },
     {
       label: 'Date of Birth',
-      child: (<div>
-        <DatePicker className="datePickerStyle" renderExtraFooter={() => 'extra footer'} format="DD-MM-YYYY" />
-      </div>),
+      child: (
+        <div>
+          <DatePicker className="datePickerStyle" renderExtraFooter={() => 'extra footer'} format="DD-MM-YYYY" />
+        </div>
+      ),
     },
     {
       label: 'Bio',
