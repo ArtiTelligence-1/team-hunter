@@ -3,10 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import { Image, Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
 import moment from 'moment';
 import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
-import { useGetEventByIdQuery, useLazyGetEventQuery } from '../../core/api/events';
+import { useGetEventByIdQuery, useLazyGetEventQuery, useAddCommentMutation } from '../../core/api/events';
+import { useGetMeQuery } from '../../core/api/user';
 import { Event } from '../../core/types/event';
-import LoadingSpinner from '../../components/LoadingSpinner';
 import { Discussion } from '../../core/types/discussion';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const { TextArea } = Input;
 
@@ -54,6 +55,8 @@ const EventComponent = () => {
   const event = response.data;
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState('');
+  const { data: pofileData, isLoading } = useGetMeQuery(null);
+  const [addComment, result] = useAddCommentMutation();
 
   const [comments, setComments] = useState<any>([]);
   useEffect(() => {
@@ -82,21 +85,22 @@ const EventComponent = () => {
   const handleSubmit = () => {
     if (!value) return;
 
+    const commentItem = {
+      author: pofileData?.firstName,
+      avatar: pofileData?.photoUrl,
+      content: <p>{value}</p>,
+      datetime: moment().fromNow(),
+    };
     setSubmitting(true);
-
     setTimeout(() => {
       setSubmitting(false);
       setValue('');
       setComments([
         ...comments,
-        {
-          author: 'Han Solo',
-          avatar: 'https://joeschmoe.io/api/v1/random',
-          content: <p>{value}</p>,
-          datetime: moment().fromNow(),
-        },
+        commentItem,
       ]);
     }, 1000);
+    addComment({ eventId: id ?? '', text: value });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

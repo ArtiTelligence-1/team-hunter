@@ -14,3 +14,16 @@ export interface Discussion {
     replyTo: Date,
     replies: Date[]
   };
+
+export interface Comments {
+  id: Date,
+  sender: {
+    id: string,
+    firstName: string,
+    lastName: string,
+    photoUrl: string
+  },
+  text: string,
+  editedAt: Date,
+  // replies: Date[]
+};
