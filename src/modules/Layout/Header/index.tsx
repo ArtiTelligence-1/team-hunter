@@ -1,10 +1,10 @@
 import React from 'react';
 
-import '../../styles/sass/_variable.scss';
-import '../../styles/sass/_header.scss';
+import '../../../styles/sass/_variable.scss';
+import '../../../styles/sass/_header.scss';
 import { Link } from 'react-router-dom';
-import { LogoSrcIcon } from '../../components/ImgLoader';
-import { structureMap } from '../../routing/siteMapping';
+import { LogoSrcIcon } from '../../../components/ImgLoader';
+import { structureMap } from '../../../routing/siteMapping';
 
 const Header = () => (
   <header className="header">
@@ -26,20 +26,19 @@ const Header = () => (
           <nav className="header__menu mobile-menu">
             <ul>
               {
-              structureMap('header').map(({ component, isActive }) => (
-                <li key={component.key} className={isActive ? 'active' : ''}>{component}</li>
-              ))
-            }
-
+                structureMap('header').map(({ component, isActive }) => (
+                  <li key={component.key} className={isActive ? 'active' : ''}>{component}</li>
+                ))
+              }
             </ul>
           </nav>
         </div>
         <div className="col-lg-3 col-md-3">
           <div className="header__nav__option header__menu">
             <Link to="/login/signin" className="link">Login</Link>
-            <Link to="." className="search-switch"><img src="img/icon/search.png" alt="" /></Link>
-            <Link to="."><img src="img/icon/heart.png" alt="" /></Link>
-            <Link to="."><img src="img/icon/chat.png" alt="" /></Link>
+            <Link to="." className="search-switch"><img src="/img/icon/search.png" alt="" /></Link>
+            <Link to="."><img src="/img/icon/heart.png" alt="" /></Link>
+            <Link to="."><img src="/img/icon/chat.png" alt="" /></Link>
             {/* <!-- <div className="price">$0.00</div> --> */}
           </div>
         </div>

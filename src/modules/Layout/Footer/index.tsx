@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LogoSrcIcon } from '../../components/ImgLoader';
-import { structureMap } from '../../routing/siteMapping';
+import { LogoSrcIcon } from '../../../components/ImgLoader';
+import { structureMap } from '../../../routing/siteMapping';
 
 const Footer = () => (
   <footer className="footer">
@@ -48,8 +48,7 @@ const Footer = () => (
             {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
             <p>
               Copyright ©
-              {new Date().getFullYear()}
-              2020 All rights reserved | This template is made with
+              2022 All rights reserved | This template is made with
               <i className="fa fa-heart-o" aria-hidden="true" />
               by
               <Link to="." target="_blank">
