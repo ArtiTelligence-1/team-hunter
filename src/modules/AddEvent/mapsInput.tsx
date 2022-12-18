@@ -37,7 +37,7 @@ const MyMapComponent = ({
   return <div ref={ref} id="map" />;
 };
 
-const MapsInput = ({ onInput }: { onInput: (l: EventLocation) => {} }) => {
+const MapsInput = ({ onInput }: { onInput?: (l: EventLocation) => any }) => {
   const [autocompleteService,
     setAutocompleteService] = useState<google.maps.places.AutocompleteService>();
   const [locationService, setLocationService] = useState<google.maps.places.PlacesService>();
@@ -81,14 +81,15 @@ const MapsInput = ({ onInput }: { onInput: (l: EventLocation) => {} }) => {
                 map?.setCenter(locatin);
                 setMarker(new google.maps.Marker({
                   position: locatin,
-                  label: exactMatch[0].description,
                   map: map,
                 }));
-                onInput({
-                  label: marker?.getLabel()?.toString()!,
-                  lat: marker?.getPosition()?.lat()!,
-                  lng: marker?.getPosition()?.lng()!,
-                } as EventLocation);
+                if (onInput) {
+                  onInput({
+                    label: exactMatch[0].description,
+                    lat: marker!.getPosition()!.lat()!,
+                    lng: marker!.getPosition()!.lng()!,
+                  } as EventLocation);
+                }
               }
             );
             // map?.setCenter(exactMatch[0].place_id);
@@ -106,8 +107,7 @@ const MapsInput = ({ onInput }: { onInput: (l: EventLocation) => {} }) => {
 
   return (
     <>
-      <Input type="text" value={place} onInput={(e) => setPlace(e.currentTarget.value)} />
-      <Input type="hidden" value={marker?.getLabel()?.toString()} name="location_label" />
+      <Input type="text" value={place} onInput={(e) => setPlace(e.currentTarget.value)} name="location_label" />
       <Input type="hidden" value={marker?.getPosition()?.lat().toString()} name="location_lat" />
       <Input type="hidden" value={marker?.getPosition()?.lng().toString()} name="location_lng" />
       {predictions?.length ?
@@ -130,6 +130,10 @@ const MapsInput = ({ onInput }: { onInput: (l: EventLocation) => {} }) => {
       </div>
     </>
   );
+};
+
+MapsInput.defaultProps = {
+  onInput: () => {},
 };
 
 export default MapsInput;
