@@ -148,9 +148,6 @@ const AddEvent = () => {
     {
       label: 'Location',
       child: <MapsInput />,
-      // (<><Input type='text' placeholder='Title'/>
-      // <SomeFunc />
-      // <Soasdjfo/></>),
     },
     {
       label: 'Description',
@@ -165,6 +162,30 @@ const AddEvent = () => {
       </div>),
     },
   ]
+
+  const handleSubmit = (event: any) => {
+    var createdEvent = {
+      title: event.target[0].value,
+      type: event.target[1].value,
+      participantsLimit: parseInt(event.target[2].ariaValueNow),
+      ageLimitGap: {
+        from: parseInt(event.target[3].ariaValueNow),
+        to: parseInt(event.target[4].ariaValueNow)
+      },
+      holdingTime: Date.parse(event.target[5].defaultValue),
+      location: {
+        lat: parseInt(event.target[7].defaultValue),
+        lng: parseInt(event.target[8].defaultValue),
+        label: event.target[6].defaultValue
+      },
+      description: event.target[21].defaultValue,
+      posterUrl: "string"
+    };
+    console.log(createdEvent);
+    console.log(event);
+    event.preventDefault();
+  }
+
 
   return (
   <>
@@ -185,18 +206,18 @@ const AddEvent = () => {
   </section>
   {/* <!-- Breadcrumb Section End --> */}
   <div className="container emp-profile">
-      <form method="post">
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-md-2"> </div>
           <div className="col-md-8">
             <div className="tab-content profile-tab" id="myTabContent">
-              {eventFields.map(event => (
-                  <div className="row" key={event.label}>
+              {eventFields.map(eventField => (
+                  <div className="row" key={eventField.label}>
                     <div className="col-md-6">
-                      <label>{event.label}</label>
+                      <label>{eventField.label}</label>
                     </div>
                     <div className="col-md-6">
-                      {event.child}
+                      {eventField.child}
                     </div>
                   </div>
                 )
