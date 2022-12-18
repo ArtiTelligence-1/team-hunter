@@ -4,7 +4,7 @@ import { useGetEventQuery, useLazyGetEventQuery } from '../core/api/events';
 import ProductCard from './ProductCard';
 
 const ProductList = () => {
-  let events = useGetEventQuery(null);
+  const events = useGetEventQuery(null);
   setInterval(() => console.log(events), 2000);
   console.log(events);
   return (

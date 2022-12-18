@@ -61,15 +61,16 @@ const Profile = () => {
 
   const handleCancel = () => setPreviewOpen(false);
 
-  const handlePreview = async (file: UploadFile) => {
+  const handlePreview = (file: UploadFile) => {
     const fileUpload = file;
     if (!fileUpload.url && !fileUpload.preview) {
-      fileUpload.preview = await getBase64(fileUpload.originFileObj as RcFile);
-      setPreviewImage(fileUpload.url ?? (fileUpload.preview as string));
-      setPreviewOpen(true);
-      setPreviewTitle(fileUpload.name || fileUpload.url!.substring(fileUpload.url!.lastIndexOf('/') + 1));
+      getBase64(fileUpload.originFileObj as RcFile).then((e) => {
+        fileUpload.preview = e;
+        setPreviewImage(fileUpload.url ?? fileUpload.preview);
+        setPreviewOpen(true);
+        setPreviewTitle(fileUpload.name || fileUpload.url!.substring(fileUpload.url!.lastIndexOf('/') + 1));
+      }).catch(() => {});
     }
-
   };
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
@@ -149,7 +150,12 @@ const Profile = () => {
                 >
                   {fileList.length >= 1 ? null : uploadButton}
                 </Upload>
-                <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+                <Modal
+                  open={previewOpen}
+                  title={previewTitle}
+                  footer={null}
+                  onCancel={handleCancel}
+                >
                   <img alt="example" style={{ width: '100%' }} src={previewImage} />
                 </Modal>
               </div>
@@ -175,8 +181,8 @@ const Profile = () => {
             <div className="col-md-8">
               <div className="tab-content profile-tab" id="myTabContent">
                 <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  {profileFields.map(profile => (
-                    <label htmlFor="name" className="row">
+                  {profileFields.map((profile) => (
+                    <label key={profile.label} htmlFor="name" className="row">
                       <div className="col-md-6">
                         {profile.label}
                       </div>

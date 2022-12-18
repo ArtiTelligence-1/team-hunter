@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { baseAPIQuery } from './baseData';
+import baseAPIQuery from './baseData';
 
 export const eventApi = createApi({
   reducerPath: 'eventApi',
