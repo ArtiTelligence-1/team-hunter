@@ -3,52 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import { Image, Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
 import moment from 'moment';
 import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
-import Quote_BG from '../../static/img/about/quote_bg.jpg';
 import { useGetEventByIdQuery, useLazyGetEventQuery } from '../../core/api/events';
 import { Event } from '../../core/types/event';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { string } from 'prop-types';
 import { Discussion } from '../../core/types/discussion';
 
 const { TextArea } = Input;
-// const data = [
-
-//   {
-
-//     actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-//     author: 'Han Solo',
-//     avatar: 'https://joeschmoe.io/api/v1/random',
-//     content: (
-//       <p>
-//         We supply a series of design principles, practical patterns and high quality design
-//         resources (Sketch and Axure), to help people create their product prototypes beautifully and
-//         efficiently.
-//       </p>
-//     ),
-//     datetime: (
-//       <Tooltip title="2016-11-22 11:22:33">
-//         <span>8 hours ago</span>
-//       </Tooltip>
-//     ),
-//   },
-//   {
-//     actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-//     author: 'Han Solo',
-//     avatar: 'https://joeschmoe.io/api/v1/random',
-//     content: (
-//       <p>
-//         We supply a series of design principles, practical patterns and high quality design
-//         resources (Sketch and Axure), to help people create their product prototypes beautifully and
-//         efficiently.
-//       </p>
-//     ),
-//     datetime: (
-//       <Tooltip title="2016-11-22 10:22:33">
-//         <span>9 hours ago</span>
-//       </Tooltip>
-//     ),
-//   },
-// ];
 
 interface CommentItem {
   author: string
@@ -92,28 +52,27 @@ const EventComponent = () => {
   const { id } = useParams();
   const response = useGetEventByIdQuery(id ?? '');
   const event = response.data;
-  //const [comments, setComments] = useState<CommentItem[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState('');
 
-  let [comments, setComments] = useState<any>([]);
-  useEffect(()=>{
-    if(event){
+  const [comments, setComments] = useState<any>([]);
+  useEffect(() => {
+    if (event) {
       setComments(event.discussion.map((d: Discussion) => ({
         actions: [<span key="comment-list-reply-to-0">Reply to</span>],
         author: d.sender.firstName,
         avatar: d.sender.photoUrl,
         content: (
-        <p>d.text</p>
-      ),
-      datetime: (
-        <Tooltip title={d.replyTo.toString()}>
-          <span>{Date.parse(moment(d.replyTo).format('DD MMM, YYYY')) - Date.now()}</span>
-        </Tooltip>
-      ),
-      })))
+          <p>d.text</p>
+        ),
+        datetime: (
+          <Tooltip title={d.replyTo.toString()}>
+            <span>{Date.parse(moment(d.replyTo).format('DD MMM, YYYY')) - Date.now()}</span>
+          </Tooltip>
+        ),
+      })));
     }
-  }, [])
+  }, []);
 
   const containerStyle = {
     width: '100%',
@@ -144,131 +103,140 @@ const EventComponent = () => {
     setValue(e.target.value);
   };
   return response.isFetching ?
-  <LoadingSpinner /> :(
-    <section className="shop-details">
-      <div className="breadcrumb-option">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcrumb__text">
-                <h4>Event Details</h4>
-                <div className="breadcrumb__links">
-                  <a href="./index.html">Home</a>
-                  <a href="./events.html">Events</a>
-                  <span>Event Details</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="product__details__content"
-        style={{ marginBottom: '20px' }}
-      >
-        <div className="container">
-          <div className="row" style={{ marginTop: '60px' }}>
-            <div className="col-md-6">
-              <div style={{ alignContent: 'center' }}>
-                <Image
-                  height={500}
-                  src={event?.posterUrl}
-                />
-              </div>
-            </div>
-            <div className="col-md-6" style={{ alignItems: 'center', display: 'flex' }}>
-              <div className="product__details__text">
-                <h4>{event?.title}</h4>
-                <h3>{event?.participants.length} / {event?.participantsLimit}</h3>
-                <p className="eventDescription">{event?.description}</p>
-                <div className="mapDisplay">
-                  <LoadScript googleMapsApiKey="AIzaSyCV5zbKUfBZ-SwJ60oASNX-j2YiHMC0HG8">
-                    <GoogleMap mapContainerStyle={containerStyle} center={event!.location} zoom={10}>
-                      <MarkerF position={event!.location} />
-                    </GoogleMap>
-                  </LoadScript>
-                </div>
-                <div className="product__details__cart__option">
-                  <Link to="/" className="primary-btn">
-                    Join
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="product__details__tab">
-                <Tabs defaultActiveKey="2">
-                  {/* <Tabs.TabPane tab="Description" key="1">
-                    <div
-                      className="product__details__tab__content"
-                      style={{ marginBottom: '100px' }}
-                    >
-                      <p className="note">
-                        Nam tempus turpis at metus scelerisque placerat nulla deumantos
-                        pharetras loremos.
-                      </p>
-                      <div className="product__details__tab__content__item">
-                        <h5>
-                          Products Infomation
-                        </h5>
-                        <p>
-                          A Pocket PC is a handheld computer, which features many of the same
-                          a touchscreen and touchpad.
-                        </p>
-                        <p>
-                          As is the case with any new technology product, the cost of a Pocket PC
-                          $350.00, a new Pocket PC can now be purchased.
-                        </p>
-                      </div>
-                      <div className="product__details__tab__content__item">
-                        <h5>Material used</h5>
-                        <p>
-                          Polyester is deemed lower quality due to its
-                          none natural quality’s. Made  worn all year round.
-                        </p>
-                      </div>
+    <LoadingSpinner /> :
+      (
+        <section className="shop-details">
+          <div className="breadcrumb-option">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="breadcrumb__text">
+                    <h4>Event Details</h4>
+                    <div className="breadcrumb__links">
+                      <a href="./index.html">Home</a>
+                      <a href="./events.html">Events</a>
+                      <span>Event Details</span>
                     </div>
-                  </Tabs.TabPane> */}
-                  <Tabs.TabPane tab="Discussion" key="2">
-                    <List
-                      className="comment-list"
-                      header={`${comments.length} replies`}
-                      itemLayout="horizontal"
-                      dataSource={comments}
-                      renderItem={(item: any) => (
-                        <li>
-                          <Comment
-                            actions={item.actions}
-                            author={item.author}
-                            avatar={item.avatar}
-                            content={item.content}
-                            datetime={item.datetime}
-                          />
-                        </li>
-                      )}
-                    />
-                    <Comment
-                      avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
-                      content={(
-                        <Editor
-                          onChange={handleChange}
-                          onSubmit={handleSubmit}
-                          submitting={submitting}
-                          value={value}
-                        />
-                      )}
-                    />
-                  </Tabs.TabPane>
-                </Tabs>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
+          <div
+            className="product__details__content"
+            style={{ marginBottom: '20px' }}
+          >
+            <div className="container">
+              <div className="row" style={{ marginTop: '60px' }}>
+                <div className="col-md-6">
+                  <div style={{ alignContent: 'center' }}>
+                    <Image
+                      height={500}
+                      src={event?.posterUrl}
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6" style={{ alignItems: 'center', display: 'flex' }}>
+                  <div className="product__details__text">
+                    <h4>{event?.title}</h4>
+                    <h3>
+                      {event?.participants.length}
+                      /
+                      {event?.participantsLimit}
+                    </h3>
+                    <p className="eventDescription">{event?.description}</p>
+                    <div className="mapDisplay">
+                      <LoadScript googleMapsApiKey="AIzaSyCV5zbKUfBZ-SwJ60oASNX-j2YiHMC0HG8">
+                        <GoogleMap
+                          mapContainerStyle={containerStyle}
+                          center={event!.location}
+                          zoom={10}
+                        >
+                          <MarkerF position={event!.location} />
+                        </GoogleMap>
+                      </LoadScript>
+                    </div>
+                    <div className="product__details__cart__option">
+                      <Link to="/" className="primary-btn">
+                        Join
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="product__details__tab">
+                    <Tabs defaultActiveKey="2">
+                      {/* <Tabs.TabPane tab="Description" key="1">
+                        <div
+                          className="product__details__tab__content"
+                          style={{ marginBottom: '100px' }}
+                        >
+                          <p className="note">
+                            Nam tempus turpis at metus scelerisque placerat nulla deumantos
+                            pharetras loremos.
+                          </p>
+                          <div className="product__details__tab__content__item">
+                            <h5>
+                              Products Infomation
+                            </h5>
+                            <p>
+                              A Pocket PC is a handheld computer, which features many of the
+                              same a touchscreen and touchpad.
+                            </p>
+                            <p>
+                              As is the case with any new technology product, the cost of a
+                              Pocket PC $350.00, a new Pocket PC can now be purchased.
+                            </p>
+                          </div>
+                          <div className="product__details__tab__content__item">
+                            <h5>Material used</h5>
+                            <p>
+                              Polyester is deemed lower quality due to its
+                              none natural quality’s. Made  worn all year round.
+                            </p>
+                          </div>
+                        </div>
+                      </Tabs.TabPane> */}
+                      <Tabs.TabPane tab="Discussion" key="2">
+                        <List
+                          className="comment-list"
+                          header={`${comments.length as number} replies`}
+                          itemLayout="horizontal"
+                          dataSource={comments}
+                          renderItem={(item: any) => (
+                            <li>
+                              <Comment
+                                actions={item.actions}
+                                author={item.author}
+                                avatar={item.avatar}
+                                content={item.content}
+                                datetime={item.datetime}
+                              />
+                            </li>
+                          )}
+                        />
+                        <Comment
+                          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+                          content={(
+                            <Editor
+                              onChange={handleChange}
+                              onSubmit={handleSubmit}
+                              submitting={submitting}
+                              value={value}
+                            />
+                          )}
+                        />
+                      </Tabs.TabPane>
+                    </Tabs>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
 };
 
 export default EventComponent;
