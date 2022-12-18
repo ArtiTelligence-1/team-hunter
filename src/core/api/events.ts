@@ -14,7 +14,20 @@ export const eventApi = createApi({
     getEventById: builder.query<Event, string>({
       query: (eventId) => `Events/${eventId}`,
     }),
+    addEvent: builder.mutation<Event, any>({
+      query: (body) => ({
+        url: 'events',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useGetEventQuery, reducer, useLazyGetEventQuery, useGetEventByIdQuery } = eventApi;
+export const {
+  useGetEventQuery,
+  reducer,
+  useLazyGetEventQuery,
+  useGetEventByIdQuery,
+  useAddEventMutation,
+} = eventApi;

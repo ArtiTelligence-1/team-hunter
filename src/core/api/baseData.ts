@@ -3,7 +3,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query';
 const baseAPIQuery = fetchBaseQuery({
   // baseUrl: 'https://team-hunter-back-staging.herokuapp.com/api/v1/',
   // baseUrl: 'http://localhost:5086/api/v1/',
-  baseUrl: 'https://87d6-185-17-127-253.ngrok.io/api/v1/',
+  baseUrl: 'https://3834-185-17-127-253.ngrok.io/api/v1/',
   prepareHeaders: (headers: Headers, { getState }: { getState: () => unknown }) => {
     headers.set('Access-Control-Allow-Origin', '*');
     headers.set('Content-Type', 'application/json');

@@ -83,13 +83,6 @@ const MapsInput = ({ onInput }: { onInput?: (l: EventLocation) => any }) => {
                   position: locatin,
                   map: map,
                 }));
-                if (onInput) {
-                  onInput({
-                    label: exactMatch[0].description,
-                    lat: marker!.getPosition()!.lat()!,
-                    lng: marker!.getPosition()!.lng()!,
-                  } as EventLocation);
-                }
               }
             );
             // map?.setCenter(exactMatch[0].place_id);
@@ -103,7 +96,7 @@ const MapsInput = ({ onInput }: { onInput?: (l: EventLocation) => any }) => {
     }
   }, [place]);
 
-  console.log(predictions);
+  // console.log(predictions);
 
   return (
     <>

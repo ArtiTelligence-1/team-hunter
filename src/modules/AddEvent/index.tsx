@@ -3,11 +3,13 @@ import {} from '../../components/ImgLoader'
 import { Alert, Space, UploadProps } from 'antd'
 import { Select, Col, InputNumber, Row, Slider, Input, Button, Upload, DatePicker, TimePicker, AutoComplete } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
+import { useAddEventMutation, useLazyGetEventQuery } from '../../core/api/events';
 import 'react-phone-number-input/style.css'
 
 import './index.less';
 import '../Profile/index.less';
 import MapsInput from './mapsInput'
+import { Navigate, useNavigate } from 'react-router'
 
 const { Option } = Select
 const { TextArea } = Input
@@ -111,6 +113,8 @@ const Selecter = ({ defaultOption, values, ...props } : SelecterProps) => {
 
 
 const AddEvent = () => {
+  const [eventMutation] = useAddEventMutation();
+  const navigator = useNavigate();
   const fileUploadInput = useRef<any>();
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value)
@@ -166,7 +170,8 @@ const AddEvent = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(fileUploadInput.current?.fileList);
+    let dateStr = event.target[5].defaultValue;
+
     var createdEvent = {
       title: event.target[0].value,
       type: event.target[1].value,
@@ -175,17 +180,17 @@ const AddEvent = () => {
         from: parseInt(event.target[3].ariaValueNow),
         to: parseInt(event.target[4].ariaValueNow)
       },
-      holdingTime: Date.parse(event.target[5].defaultValue),
+      holdingTime: (new Date(dateStr.substr(3, 2)+"-"+dateStr.substr(0, 2)+"-"+dateStr.substr(6, 4))).toISOString(),
       location: {
         lat: parseInt(event.target[7].defaultValue),
         lng: parseInt(event.target[8].defaultValue),
         label: event.target[6].defaultValue
       },
       description: event.target[21].defaultValue,
-      posterUrl: "string"
+      posterUrl: fileUploadInput.current?.fileList[0].thumbUrl
     };
-    console.log(createdEvent);
-    console.log(event);
+  
+    eventMutation(createdEvent).then(() => navigator("/Events"));
   }
 
 
