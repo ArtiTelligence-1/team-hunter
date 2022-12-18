@@ -24,7 +24,7 @@ export const eventApi = createApi({
     }),
     addComment: builder.mutation<Comment, any>({
       query: ({ eventId, ...body }) => ({
-        url: `Events/${eventId}/comments`,
+        url: `Events/${eventId as string}/comments`,
         method: 'POST',
         body,
       }),

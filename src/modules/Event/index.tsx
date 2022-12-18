@@ -100,7 +100,7 @@ const EventComponent = () => {
         commentItem,
       ]);
     }, 1000);
-    addComment({ eventId: id ?? '', text: value });
+    addComment({ eventId: id ?? '', text: value }).catch(() => {});
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
