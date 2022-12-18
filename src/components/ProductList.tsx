@@ -1,6 +1,7 @@
 import { List } from 'antd';
 import React from 'react';
 import { useGetEventQuery, useLazyGetEventQuery } from '../core/api/events';
+import { Event } from '../core/types/event';
 import LoadingSpinner from './LoadingSpinner';
 import ProductCard from './ProductCard';
 
@@ -19,9 +20,11 @@ const ProductList = () => {
             lg: 3,
             column: 4,
           }}
-          dataSource={events.data}
-          renderItem={(item: any) => (
-            <ProductCard />
+          dataSource={events.data! as any}
+          renderItem={(item: Event) => (
+            <ProductCard
+              event={item}
+            />
           )}
         />
       );
