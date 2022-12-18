@@ -1,4 +1,4 @@
-export interface Event {
+export interface Profile {
     telegramId: number,
     firstName: string,
     lastName: string,

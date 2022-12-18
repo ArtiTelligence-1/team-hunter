@@ -5,6 +5,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import './index.less';
+import { useAddMeMutation } from '../../core/api/user';
+import moment from 'moment';
 
 const { TextArea } = Input;
 
@@ -46,6 +48,7 @@ const getBase64 = (file: RcFile): Promise<string> =>
   });
 
 const Profile = () => {
+  const [profileMutation] = useAddMeMutation();
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value);
   };
@@ -119,6 +122,22 @@ const Profile = () => {
     },
   ];
 
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+
+    var createdEvent = {
+      firstName: event.target[2].value,
+      lastName: event.target[3].value,
+      photoUrl: fileList[0].thumbUrl,
+      bio: event.target[6].value,
+      aboutMe: event.target[6].value,
+      sex: event.target[4].value,
+      birthDate: moment((event.target[5].value), 'DD-MM-YYYY  HH:mm').toISOString(),
+    };
+
+    profileMutation(createdEvent);
+  }
+
   return (
     <>
       <section className="breadcrumb-option">
@@ -137,7 +156,7 @@ const Profile = () => {
         </div>
       </section>
       <div className="container emp-profile">
-        <form method="post">
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-md-4">
               <div className="profile-img">

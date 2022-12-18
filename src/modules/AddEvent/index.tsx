@@ -172,8 +172,6 @@ const AddEvent = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     let dateStr = event.target[5].defaultValue;
-    console.log(dateStr);
-    console.log(event.target[2])
 
     var createdEvent = {
       title: event.target[0].value,
