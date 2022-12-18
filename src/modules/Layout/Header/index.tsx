@@ -26,8 +26,8 @@ const Header = () => (
           <nav className="header__menu mobile-menu">
             <ul>
               {
-                structureMap('header').map(({ component, isActive }) => (
-                  <li key={component.key} className={isActive ? 'active' : ''}>{component}</li>
+                structureMap('header').map(({ key, component, isActive }) => (
+                  <li key={key} className={isActive ? 'active' : ''}>{component}</li>
                 ))
               }
             </ul>

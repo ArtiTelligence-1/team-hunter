@@ -37,6 +37,7 @@ export const structure = {
 export const structureMap = (position: string) => Object.values(structure)
   .filter((link) => link?.position?.includes(position) ?? false)
   .map((link) => ({
+    key: link.path,
     component: (
       <Link to={link.path}>{link.caption}</Link>
     ),

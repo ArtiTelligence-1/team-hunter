@@ -59,23 +59,23 @@ const EventComponent = () => {
   const [addComment, result] = useAddCommentMutation();
 
   const [comments, setComments] = useState<any>([]);
-  useEffect(() => {
-    if (event) {
-      setComments(event.discussion.map((d: Discussion) => ({
-        actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-        author: d.sender.firstName,
-        avatar: d.sender.photoUrl,
-        content: (
-          <p>d.text</p>
-        ),
-        datetime: (
-          <Tooltip title={d.replyTo.toString()}>
-            <span>{Date.parse(moment(d.replyTo).format('DD MMM, YYYY')) - Date.now()}</span>
-          </Tooltip>
-        ),
-      })));
-    }
-  }, []);
+  // useEffect(() => {
+  if (!response.isLoading && (event?.discussion?.length ?? 0) > 0 && comments.length === 0) {
+    setComments(event?.discussion.map((d: Discussion) => ({
+      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+      author: d.sender.firstName,
+      avatar: d.sender.photoUrl,
+      content: (
+        <p>{d.text}</p>
+      ),
+      datetime: (
+        <Tooltip title={d.id.toString()}>
+          <span>{moment(d.id).fromNow()}</span>
+        </Tooltip>
+      ),
+    })));
+  }
+  // }, []);
 
   const containerStyle = {
     width: '100%',
@@ -223,7 +223,7 @@ const EventComponent = () => {
                           )}
                         />
                         <Comment
-                          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+                          avatar={<Avatar src={pofileData?.photoUrl} alt="Han Solo" />}
                           content={(
                             <Editor
                               onChange={handleChange}
