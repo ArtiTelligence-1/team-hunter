@@ -24,7 +24,8 @@ const config = {
   },
   devServer: {
     open: false,
-    host: "localhost",
+    // host: "localhost",
+    allowedHosts: 'all',
     port: 5050,
     historyApiFallback: true,
     client: {

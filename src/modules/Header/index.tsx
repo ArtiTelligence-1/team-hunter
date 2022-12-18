@@ -37,9 +37,9 @@ const Header = () => (
         <div className="col-lg-3 col-md-3">
           <div className="header__nav__option header__menu">
             <Link to="/login/signin" className="link">Login</Link>
-            <Link to="." className="search-switch"><img src="img/icon/search.png" alt="" /></Link>
-            <Link to="."><img src="img/icon/heart.png" alt="" /></Link>
-            <Link to="."><img src="img/icon/chat.png" alt="" /></Link>
+            <Link to="." className="search-switch"><img src="/img/icon/search.png" alt="" /></Link>
+            <Link to="."><img src="/img/icon/heart.png" alt="" /></Link>
+            <Link to="."><img src="/img/icon/chat.png" alt="" /></Link>
             {/* <!-- <div className="price">$0.00</div> --> */}
           </div>
         </div>

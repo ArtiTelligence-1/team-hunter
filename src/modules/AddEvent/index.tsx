@@ -10,6 +10,7 @@ import './index.less';
 import '../Profile/index.less';
 import MapsInput from './mapsInput'
 import { Navigate, useNavigate } from 'react-router'
+import moment from 'moment'
 
 const { Option } = Select
 const { TextArea } = Input
@@ -84,10 +85,10 @@ const props: UploadProps = {
         canvas.height = img.naturalHeight
         const ctx = canvas.getContext('2d')!
         ctx.drawImage(img, 0, 0)
-        ctx.fillStyle = 'red'
-        ctx.textBaseline = 'middle'
-        ctx.font = '33px Arial'
-        ctx.fillText('Ant Design', 20, 20)
+        // ctx.fillStyle = 'red'
+        // ctx.textBaseline = 'middle'
+        // ctx.font = '33px Arial'
+        // ctx.fillText('Ant Design', 20, 20)
         canvas.toBlob(result => resolve(result as any))
       }
     }
@@ -161,7 +162,7 @@ const AddEvent = () => {
     {
       label: 'Upload Image',
       child: (
-        <div className="imageLoader"><Upload name="file_upload" ref={fileUploadInput} {...props}>
+        <div className="imageLoader"><Upload maxCount={1} name="file_upload" ref={fileUploadInput} {...props}>
         <Button icon={<UploadOutlined />}>Upload</Button>
       </Upload>
       </div>),
@@ -171,19 +172,21 @@ const AddEvent = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     let dateStr = event.target[5].defaultValue;
+    console.log(dateStr);
+    console.log(event.target[2])
 
     var createdEvent = {
       title: event.target[0].value,
       type: event.target[1].value,
-      participantsLimit: parseInt(event.target[2].ariaValueNow),
+      participantsLimit: parseInt(event.target[2].value) ?? 0,
       ageLimitGap: {
-        from: parseInt(event.target[3].ariaValueNow),
-        to: parseInt(event.target[4].ariaValueNow)
+        from: parseInt(event.target[3].value),
+        to: parseInt(event.target[4].value)
       },
-      holdingTime: (new Date(dateStr.substr(3, 2)+"-"+dateStr.substr(0, 2)+"-"+dateStr.substr(6, 4))).toISOString(),
+      holdingTime: moment(dateStr, 'DD-MM-YYYY  HH:mm').toISOString(),
       location: {
-        lat: parseInt(event.target[7].defaultValue),
-        lng: parseInt(event.target[8].defaultValue),
+        lat: parseFloat(event.target[7].defaultValue),
+        lng: parseFloat(event.target[8].defaultValue),
         label: event.target[6].defaultValue
       },
       description: event.target[21].defaultValue,

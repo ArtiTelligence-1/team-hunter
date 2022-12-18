@@ -30,7 +30,14 @@ const ProductCard = (props: ProductCardProps) => {
         </ul>
       </div>
       <div className="product__item__text">
-        <h6 className="h-product">{event.title}</h6>
+        <h6 className="h-product">
+          {event.title}
+          <span>
+            {event.participants.length}
+            /
+            {event.participantsLimit}
+          </span>
+        </h6>
         <div className="d-flex justify-content-between">
           <div>
             <p className="mb-0">
@@ -39,11 +46,6 @@ const ProductCard = (props: ProductCardProps) => {
             <p>
               {moment(event.holdingTime).format('HH:mm DD/MM/YYYY')}
             </p>
-          </div>
-          <div className="flex items-center">
-            {event.participants.length}
-            /
-            {event.participantsLimit}
           </div>
         </div>
         <Link to={`/Event/${event.id}`} className="add-cart">+ Details</Link>
