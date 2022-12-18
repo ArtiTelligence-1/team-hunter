@@ -1,47 +1,54 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Image, Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
 import moment from 'moment';
 import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
 import Quote_BG from '../../static/img/about/quote_bg.jpg';
+import { useGetEventByIdQuery, useLazyGetEventQuery } from '../../core/api/events';
+import { Event } from '../../core/types/event';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { string } from 'prop-types';
+import { Discussion } from '../../core/types/discussion';
 
 const { TextArea } = Input;
-const data = [
-  {
-    actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: (
-      <p>
-        We supply a series of design principles, practical patterns and high quality design
-        resources (Sketch and Axure), to help people create their product prototypes beautifully and
-        efficiently.
-      </p>
-    ),
-    datetime: (
-      <Tooltip title="2016-11-22 11:22:33">
-        <span>8 hours ago</span>
-      </Tooltip>
-    ),
-  },
-  {
-    actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: (
-      <p>
-        We supply a series of design principles, practical patterns and high quality design
-        resources (Sketch and Axure), to help people create their product prototypes beautifully and
-        efficiently.
-      </p>
-    ),
-    datetime: (
-      <Tooltip title="2016-11-22 10:22:33">
-        <span>9 hours ago</span>
-      </Tooltip>
-    ),
-  },
-];
+// const data = [
+
+//   {
+
+//     actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+//     author: 'Han Solo',
+//     avatar: 'https://joeschmoe.io/api/v1/random',
+//     content: (
+//       <p>
+//         We supply a series of design principles, practical patterns and high quality design
+//         resources (Sketch and Axure), to help people create their product prototypes beautifully and
+//         efficiently.
+//       </p>
+//     ),
+//     datetime: (
+//       <Tooltip title="2016-11-22 11:22:33">
+//         <span>8 hours ago</span>
+//       </Tooltip>
+//     ),
+//   },
+//   {
+//     actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+//     author: 'Han Solo',
+//     avatar: 'https://joeschmoe.io/api/v1/random',
+//     content: (
+//       <p>
+//         We supply a series of design principles, practical patterns and high quality design
+//         resources (Sketch and Axure), to help people create their product prototypes beautifully and
+//         efficiently.
+//       </p>
+//     ),
+//     datetime: (
+//       <Tooltip title="2016-11-22 10:22:33">
+//         <span>9 hours ago</span>
+//       </Tooltip>
+//     ),
+//   },
+// ];
 
 interface CommentItem {
   author: string
@@ -81,17 +88,37 @@ const Editor = ({ onChange, onSubmit, submitting, value }: EditorProps) => (
   </>
 );
 
-const Event = () => {
-  const [comments, setComments] = useState<CommentItem[]>([]);
+const EventComponent = () => {
+  const { id } = useParams();
+  const response = useGetEventByIdQuery(id ?? '');
+  const event = response.data;
+  //const [comments, setComments] = useState<CommentItem[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState('');
 
+  let [comments, setComments] = useState<any>([]);
+  useEffect(()=>{
+    if(event){
+      setComments(event.discussion.map((d: Discussion) => ({
+        actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+        author: d.sender.firstName,
+        avatar: d.sender.photoUrl,
+        content: (
+        <p>d.text</p>
+      ),
+      datetime: (
+        <Tooltip title={d.replyTo.toString()}>
+          <span>{Date.parse(moment(d.replyTo).format('DD MMM, YYYY')) - Date.now()}</span>
+        </Tooltip>
+      ),
+      })))
+    }
+  }, [])
+
   const containerStyle = {
-    width: '500px',
+    width: '100%',
     height: '200px',
   };
-
-  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
 
   const handleSubmit = () => {
     if (!value) return;
@@ -107,7 +134,7 @@ const Event = () => {
           author: 'Han Solo',
           avatar: 'https://joeschmoe.io/api/v1/random',
           content: <p>{value}</p>,
-          datetime: moment('2022-11-12').fromNow(),
+          datetime: moment().fromNow(),
         },
       ]);
     }, 1000);
@@ -116,7 +143,8 @@ const Event = () => {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
-  return (
+  return response.isFetching ?
+  <LoadingSpinner /> :(
     <section className="shop-details">
       <div className="breadcrumb-option">
         <div className="container">
@@ -143,38 +171,27 @@ const Event = () => {
             <div className="col-md-6">
               <div style={{ alignContent: 'center' }}>
                 <Image
-                  width={600}
                   height={500}
-                  src={Quote_BG}
+                  src={event?.posterUrl}
                 />
               </div>
             </div>
             <div className="col-md-6" style={{ alignItems: 'center', display: 'flex' }}>
-              <div className="row justify-content-center">
-                <div className="col-lg-10">
-                  <div className="product__details__text">
-                    <h4>Hooded thermal anorak</h4>
-                    <h3>2 / 10</h3>
-                    <p className="eventDescription">A Pocket PC is a handheld computer, which features many of the same a touchscreen and touchpad. As is the case with any new technology product, the cost of a Pocket PC $350.00, a new Pocket PC can now be purchased.</p>
-                    <div className="mapDisplay">
-                      <LoadScript googleMapsApiKey="AIzaSyCV5zbKUfBZ-SwJ60oASNX-j2YiHMC0HG8">
-                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-                          <MarkerF position={center} />
-                        </GoogleMap>
-                      </LoadScript>
-                    </div>
-                    {/* <div className="product__details__btns__option">
-                      <Link to="/">
-                        <i className="fa fa-heart" />
-                        add to wishlist
-                      </Link>
-                    </div> */}
-                    <div className="product__details__cart__option">
-                      <Link to="/" className="primary-btn">
-                        Join
-                      </Link>
-                    </div>
-                  </div>
+              <div className="product__details__text">
+                <h4>{event?.title}</h4>
+                <h3>{event?.participants.length} / {event?.participantsLimit}</h3>
+                <p className="eventDescription">{event?.description}</p>
+                <div className="mapDisplay">
+                  <LoadScript googleMapsApiKey="AIzaSyCV5zbKUfBZ-SwJ60oASNX-j2YiHMC0HG8">
+                    <GoogleMap mapContainerStyle={containerStyle} center={event!.location} zoom={10}>
+                      <MarkerF position={event!.location} />
+                    </GoogleMap>
+                  </LoadScript>
+                </div>
+                <div className="product__details__cart__option">
+                  <Link to="/" className="primary-btn">
+                    Join
+                  </Link>
                 </div>
               </div>
             </div>
@@ -217,10 +234,10 @@ const Event = () => {
                   <Tabs.TabPane tab="Discussion" key="2">
                     <List
                       className="comment-list"
-                      header={`${data.length} replies`}
+                      header={`${comments.length} replies`}
                       itemLayout="horizontal"
-                      dataSource={data}
-                      renderItem={(item) => (
+                      dataSource={comments}
+                      renderItem={(item: any) => (
                         <li>
                           <Comment
                             actions={item.actions}
@@ -232,7 +249,6 @@ const Event = () => {
                         </li>
                       )}
                     />
-                    {comments.length > 0 && <CommentList comments={comments} />}
                     <Comment
                       avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
                       content={(
@@ -255,4 +271,4 @@ const Event = () => {
   );
 };
 
-export default Event;
+export default EventComponent;

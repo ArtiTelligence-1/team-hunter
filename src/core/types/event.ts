@@ -1,3 +1,5 @@
+import { Discussion } from "./discussion";
+
 export interface Event {
   id: string;
   owner: any;
@@ -17,5 +19,5 @@ export interface Event {
   };
   description: string;
   posterUrl: string;
-  discussion: any[];
+  discussion: Discussion[];
 };
