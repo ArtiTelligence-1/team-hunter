@@ -16,4 +16,4 @@ export const eventApi = createApi({
   }),
 });
 
-export const { useGetEventQuery, useLazyGetEventQuery } = eventApi;
+export const { useGetEventQuery, reducer, useLazyGetEventQuery } = eventApi;
