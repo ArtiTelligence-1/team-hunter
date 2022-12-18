@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LogoSrcIcon } from '../../components/ImgLoader';
-import { structureMap } from '../../routing/siteMapping';
+import { LogoSrcIcon } from '../../../components/ImgLoader';
+import { structureMap } from '../../../routing/siteMapping';
 
 const Footer = () => (
   <footer className="footer">

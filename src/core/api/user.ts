@@ -6,7 +6,7 @@ export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: baseAPIQuery,
   endpoints: (builder) => ({
-    getMe: builder.query<Profile[], null>({
+    getMe: builder.query<Profile, null>({
       query: () => ({
         url: 'user',
       }),

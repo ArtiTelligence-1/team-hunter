@@ -1,10 +1,10 @@
 import React from 'react';
 
-import '../../styles/sass/_variable.scss';
-import '../../styles/sass/_header.scss';
+import '../../../styles/sass/_variable.scss';
+import '../../../styles/sass/_header.scss';
 import { Link } from 'react-router-dom';
-import { LogoSrcIcon } from '../../components/ImgLoader';
-import { structureMap } from '../../routing/siteMapping';
+import { LogoSrcIcon } from '../../../components/ImgLoader';
+import { structureMap } from '../../../routing/siteMapping';
 
 const Header = () => (
   <header className="header">
@@ -26,11 +26,10 @@ const Header = () => (
           <nav className="header__menu mobile-menu">
             <ul>
               {
-              structureMap('header').map(({ component, isActive }) => (
-                <li key={component.key} className={isActive ? 'active' : ''}>{component}</li>
-              ))
-            }
-
+                structureMap('header').map(({ component, isActive }) => (
+                  <li key={component.key} className={isActive ? 'active' : ''}>{component}</li>
+                ))
+              }
             </ul>
           </nav>
         </div>
