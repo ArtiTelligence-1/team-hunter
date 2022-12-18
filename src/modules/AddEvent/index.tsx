@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import {} from '../../components/ImgLoader'
 import { Alert, Space, UploadProps } from 'antd'
 import { Select, Col, InputNumber, Row, Slider, Input, Button, Upload, DatePicker, TimePicker, AutoComplete } from 'antd'
@@ -68,7 +68,7 @@ const SliderStepper = ({
 };
 
 const props: UploadProps = {
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
   listType: 'picture',
   beforeUpload: async (file) => await new Promise(resolve => {
     const reader = new FileReader()
@@ -111,6 +111,7 @@ const Selecter = ({ defaultOption, values, ...props } : SelecterProps) => {
 
 
 const AddEvent = () => {
+  const fileUploadInput = useRef<any>();
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value)
   }
@@ -119,11 +120,11 @@ const AddEvent = () => {
   const eventFields = [
     {
       label: 'Title',
-      child: <Input type='text' placeholder='Title'/>,
+      child: <Input name="title" type='text' placeholder='Title'/>,
     },
     {
       label: 'Type of Sport',
-      child: <select id="typeOfSport" className="selectdiv">
+      child: <select name="type" id="typeOfSport" className="selectdiv">
       <option selected> Choose.. </option>
       {sport_types.map(type => (
         <option>{type}</option>
@@ -142,7 +143,7 @@ const AddEvent = () => {
     {
       label: 'Time',
       child: (<div className="timeDiv">
-      <DatePicker renderExtraFooter={() => 'extra footer'} format="DD-MM-YYYY  HH:mm" showTime />
+      <DatePicker name="holdingTime" renderExtraFooter={() => 'extra footer'} format="DD-MM-YYYY  HH:mm" showTime />
     </div>),
     },
     {
@@ -151,12 +152,12 @@ const AddEvent = () => {
     },
     {
       label: 'Description',
-      child: (<TextArea className="textarea_prop" maxLength={300} showCount onChange={onChange}>Some text about event...</TextArea>      ),
+      child: (<TextArea className="textarea_prop" name="desciption" maxLength={300} showCount onChange={onChange}>Some text about event...</TextArea>      ),
     },
     {
       label: 'Upload Image',
       child: (
-        <div className="imageLoader"><Upload {...props}>
+        <div className="imageLoader"><Upload name="file_upload" ref={fileUploadInput} {...props}>
         <Button icon={<UploadOutlined />}>Upload</Button>
       </Upload>
       </div>),
@@ -164,6 +165,8 @@ const AddEvent = () => {
   ]
 
   const handleSubmit = (event: any) => {
+    event.preventDefault();
+    console.log(fileUploadInput.current?.fileList);
     var createdEvent = {
       title: event.target[0].value,
       type: event.target[1].value,
@@ -183,7 +186,6 @@ const AddEvent = () => {
     };
     console.log(createdEvent);
     console.log(event);
-    event.preventDefault();
   }
 
 
