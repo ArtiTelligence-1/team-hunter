@@ -3,6 +3,7 @@ import { Wrapper, Status } from '@googlemaps/react-wrapper';
 import { Loader } from '@googlemaps/js-api-loader';
 import { Button, List } from 'antd';
 import Input from '../../components/input';
+import { EventLocation } from '../../core/types/location';
 
 const render = (status: Status) => {
   switch (status) {
@@ -36,7 +37,7 @@ const MyMapComponent = ({
   return <div ref={ref} id="map" />;
 };
 
-const MapsInput = () => {
+const MapsInput = ({ onInput }: { onInput: (l: EventLocation) => {} }) => {
   const [autocompleteService,
     setAutocompleteService] = useState<google.maps.places.AutocompleteService>();
   const [locationService, setLocationService] = useState<google.maps.places.PlacesService>();
@@ -69,7 +70,7 @@ const MapsInput = () => {
     if (autocompleteService !== undefined) {
       autocompleteService.getPlacePredictions({ input: place })
         .then((ew) => {
-          console.log(ew.predictions.filter((item) => item.description === place).length);
+          // console.log(ew.predictions.filter((item) => item.description === place).length);
           const exactMatch = ew.predictions.filter((item) => item.description === place);
           if (exactMatch.length) {
             setPredictions([]);
@@ -80,8 +81,14 @@ const MapsInput = () => {
                 map?.setCenter(locatin);
                 setMarker(new google.maps.Marker({
                   position: locatin,
+                  label: exactMatch[0].description,
                   map: map,
                 }));
+                onInput({
+                  label: marker?.getLabel()?.toString()!,
+                  lat: marker?.getPosition()?.lat()!,
+                  lng: marker?.getPosition()?.lng()!,
+                } as EventLocation);
               }
             );
             // map?.setCenter(exactMatch[0].place_id);
@@ -100,6 +107,9 @@ const MapsInput = () => {
   return (
     <>
       <Input type="text" value={place} onInput={(e) => setPlace(e.currentTarget.value)} />
+      <Input type="hidden" value={marker?.getLabel()?.toString()} name="location_label" />
+      <Input type="hidden" value={marker?.getPosition()?.lat().toString()} name="location_lat" />
+      <Input type="hidden" value={marker?.getPosition()?.lng().toString()} name="location_lng" />
       {predictions?.length ?
           (
             <List

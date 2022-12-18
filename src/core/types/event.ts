@@ -1,4 +1,5 @@
 import { Discussion } from "./discussion";
+import { EventLocation } from "./location";
 
 export interface Event {
   id: string;
@@ -12,11 +13,7 @@ export interface Event {
     to: number;
   }
   holdingTime: Date;
-  location: {
-    lat: number;
-    lng: number;
-    label: string;
-  };
+  location: EventLocation;
   description: string;
   posterUrl: string;
   discussion: Discussion[];

@@ -28,6 +28,7 @@ const SiteRouter = () => (
           <Route path="/Profile" element={<PrivateRoute component={<ProfilePage />} />} />
           <Route path="/Addevent" element={<AddEventPage />} />
           <Route path="/Event/:id" element={<EventPage />} />
+          <Route path="/Event/*" element={<EventPage />} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
