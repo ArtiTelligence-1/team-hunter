@@ -120,7 +120,7 @@ const AddEvent = () => {
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value)
   }
-  const sport_types = ['football', 'tennis', 'basketball'];
+  const sport_types = ['football', 'volleyball', 'basketball', 'tennis', 'bowling', 'other'];
 
   const eventFields = [
     {

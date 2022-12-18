@@ -24,7 +24,11 @@ const ProductCard = (props: ProductCardProps) => {
       >
         {event.title !== '' ? <span className="label">{event.type}</span> : ''}
         <ul className="product__hover">
-          <li><Link to={`/Event/${event.id}`}><HeartSrcIcon /></Link></li>
+          <li>
+            {event.participants.length}
+            /
+            {event.participantsLimit}
+          </li>
           {/* <li><Link to="."><CompareSrcIcon /><spanCompare</span></Link></li> */}
           {/* <li><Link to="."><SearchSrcIcon /></Link></li> */}
         </ul>
@@ -32,19 +36,14 @@ const ProductCard = (props: ProductCardProps) => {
       <div className="product__item__text">
         <h6 className="h-product">
           {event.title}
-          <span>
-            {event.participants.length}
-            /
-            {event.participantsLimit}
-          </span>
         </h6>
         <div className="d-flex justify-content-between">
           <div>
-            <p className="mb-0">
+            {/* <p className="mb-0">
               {event.location.label}
-            </p>
+            </p> */}
             <p>
-              {moment(event.holdingTime).format('HH:mm DD/MM/YYYY')}
+              {moment(event.holdingTime).format('DD/MM/YYYY HH:mm')}
             </p>
           </div>
         </div>

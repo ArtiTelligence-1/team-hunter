@@ -156,6 +156,7 @@ const EventComponent = () => {
                         </GoogleMap>
                       </LoadScript>
                     </div>
+                    <p>{event?.location.label}</p>
                     <div className="product__details__cart__option">
                       <Link to="/" className="primary-btn">
                         Join
