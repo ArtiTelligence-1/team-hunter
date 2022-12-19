@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Image, Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
 import moment from 'moment';
 import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
-import { useGetEventByIdQuery, useLazyGetEventQuery, useAddCommentMutation } from '../../core/api/events';
+import { useGetEventByIdQuery, useLazyGetEventQuery, useAddCommentMutation, useToggleJoinEventMutation } from '../../core/api/events';
 import { useGetMeQuery } from '../../core/api/user';
 import { Event } from '../../core/types/event';
 import { Discussion } from '../../core/types/discussion';
@@ -57,6 +57,7 @@ const EventComponent = () => {
   const [value, setValue] = useState('');
   const { data: pofileData, isLoading } = useGetMeQuery(null);
   const [addComment, result] = useAddCommentMutation();
+  const [joinEvent, joinResponse] = useToggleJoinEventMutation();
 
   const [comments, setComments] = useState<any>([]);
   // useEffect(() => {
@@ -101,6 +102,17 @@ const EventComponent = () => {
       ]);
     }, 1000);
     addComment({ eventId: id ?? '', text: value }).catch(() => {});
+  };
+
+  const toggleJoinEvent = () => {
+    joinEvent(id ?? '').catch(() => {}).then((e) => {
+      if(e.message==='joined'){
+        event?.participants.push({id});
+      }else if(e.==='joined'){
+        event?.participants = event?.participants.filter(a => a.id===pofileData?.telegramId);
+      }
+    });
+    
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -160,11 +172,11 @@ const EventComponent = () => {
                         </GoogleMap>
                       </LoadScript>
                     </div>
-                    <p>{event?.location.label}</p>
+                    <p>{event?.location?.label}</p>
                     <div className="product__details__cart__option">
-                      <Link to="/" className="primary-btn">
+                      <button type="button" onClick={toggleJoinEvent} className="primary-btn">
                         Join
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
