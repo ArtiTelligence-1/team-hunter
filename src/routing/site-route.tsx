@@ -27,7 +27,8 @@ const SiteRouter = () => (
           <Route path="/Contact" element={<ContactPage />} />
           <Route path="/Profile" element={<PrivateRoute component={<ProfilePage />} />} />
           <Route path="/Addevent" element={<AddEventPage />} />
-          <Route path="/Event" element={<EventPage />} />
+          <Route path="/Event/:id" element={<EventPage />} />
+          <Route path="/Event/*" element={<EventPage />} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Route>

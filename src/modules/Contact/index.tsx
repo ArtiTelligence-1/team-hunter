@@ -6,12 +6,7 @@ const Contact = () => (
     <div className="map">
       <iframe
         title="map"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10292.545729952
-        744!2d24.02638767756957!3d49.839893944898236!2m3!1f0!2f0!3f0!3m2!1i1024!2i
-        768!4f13.1!3m3!1m2!1s0x473add7a31f0dccd%3A0x9869cc7025bc8e3f!2z0J3QsNGG0Zb
-        QvtC90LDQu9GM0L3QuNC5INGD0L3RltCy0LXRgNGB0LjRgtC10YIgItCb0YzQstGW0LLRgdGM0
-        LrQsCDQn9C-0LvRltGC0LXRhdC90ZbQutCwIg!5e0!3m2!1suk!2sua!4v1664650649071!5m
-        2!1suk!2sua"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10292.545729952744!2d24.02638767756957!3d49.839893944898236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add7a31f0dccd%3A0x9869cc7025bc8e3f!2z0J3QsNGG0ZbQvtC90LDQu9GM0L3QuNC5INGD0L3RltCy0LXRgNGB0LjRgtC10YIgItCb0YzQstGW0LLRgdGM0LrQsCDQn9C-0LvRltGC0LXRhdC90ZbQutCwIg!5e0!3m2!1suk!2sua!4v1664650649071!5m2!1suk!2sua"
         height="500"
         style={{ border: 0 }}
         allowFullScreen
@@ -29,17 +24,17 @@ const Contact = () => (
                 <span>Information</span>
                 <h2>Contact Us</h2>
                 <p>
-                  As you might expect of a company that began as
-                  a high-end interiors contractor, we pay strict attention.
+                  While we’re good with smoke signals,
+                  there are simpler ways for us to get in touch.
                 </p>
               </div>
               <ul>
                 <li>
                   <h4>Ukraine</h4>
                   <p>
-                    195 E Parker Square Dr, Parker, CO 801
+                    12 S.Bandery street, Lviv, 79013
                     <br />
-                    +43 982-314-0958
+                    +38 032 258-22-82
                   </p>
                 </li>
               </ul>

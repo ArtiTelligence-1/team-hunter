@@ -1,13 +1,16 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import {} from '../../components/ImgLoader'
 import { Alert, Space, UploadProps } from 'antd'
 import { Select, Col, InputNumber, Row, Slider, Input, Button, Upload, DatePicker, TimePicker, AutoComplete } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
+import { useAddEventMutation, useLazyGetEventQuery } from '../../core/api/events';
 import 'react-phone-number-input/style.css'
 
 import './index.less';
 import '../Profile/index.less';
 import MapsInput from './mapsInput'
+import { Navigate, useNavigate } from 'react-router'
+import moment from 'moment'
 
 const { Option } = Select
 const { TextArea } = Input
@@ -68,7 +71,7 @@ const SliderStepper = ({
 };
 
 const props: UploadProps = {
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
   listType: 'picture',
   beforeUpload: async (file) => await new Promise(resolve => {
     const reader = new FileReader()
@@ -82,10 +85,10 @@ const props: UploadProps = {
         canvas.height = img.naturalHeight
         const ctx = canvas.getContext('2d')!
         ctx.drawImage(img, 0, 0)
-        ctx.fillStyle = 'red'
-        ctx.textBaseline = 'middle'
-        ctx.font = '33px Arial'
-        ctx.fillText('Ant Design', 20, 20)
+        // ctx.fillStyle = 'red'
+        // ctx.textBaseline = 'middle'
+        // ctx.font = '33px Arial'
+        // ctx.fillText('Ant Design', 20, 20)
         canvas.toBlob(result => resolve(result as any))
       }
     }
@@ -111,54 +114,86 @@ const Selecter = ({ defaultOption, values, ...props } : SelecterProps) => {
 
 
 const AddEvent = () => {
+  const [eventMutation] = useAddEventMutation();
+  const navigator = useNavigate();
+  const fileUploadInput = useRef<any>();
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Change:', e.target.value)
   }
-  const sport_kinds = ['football', 'tennis', 'basketball'];
+  const sport_types = ['football', 'volleyball', 'basketball', 'tennis', 'bowling', 'other'];
 
   const eventFields = [
     {
       label: 'Title',
-      child: <Input type='text' placeholder='Title'/>,
+      child: <Input name="title" type='text' placeholder='Title'/>,
     },
     {
-      label: 'King of Sport',
-      child: <Selecter className="selectdiv" defaultOption="Choose a king of sport..." values={sport_kinds} />,
+      label: 'Type of Sport',
+      child: <select name="type" id="typeOfSport" className="selectdiv">
+      <option selected> Choose.. </option>
+      {sport_types.map(type => (
+        <option>{type}</option>
+      )
+    )}
+      </select>,
     },
     {
-      label: 'Num of People',
-      child: <SliderStepper max={50} />,
+      label: 'Participants Limit',
+      child: (<div className="sliderDiv"><SliderStepper max={50} /></div>),
     },
     {
       label: 'Age Interval',
-      child: <SliderStepper range max={80} />,
+      child: (<div className="sliderDiv"><SliderStepper range max={80} /></div>),
     },
     {
       label: 'Time',
       child: (<div className="timeDiv">
-      <DatePicker renderExtraFooter={() => 'extra footer'} format="DD-MM-YYYY  HH:mm" showTime />
+      <DatePicker name="holdingTime" renderExtraFooter={() => 'extra footer'} format="DD-MM-YYYY  HH:mm" showTime />
     </div>),
     },
     {
       label: 'Location',
       child: <MapsInput />,
-      // (<><Input type='text' placeholder='Title'/>
-      // <SomeFunc />
-      // <Soasdjfo/></>),
     },
     {
       label: 'Description',
-      child: (<TextArea className="textarea_prop" maxLength={300} showCount onChange={onChange}>Some text about event...</TextArea>      ),
+      child: (<TextArea className="textarea_prop" name="desciption" maxLength={300} showCount onChange={onChange}>Some text about event...</TextArea>      ),
     },
     {
       label: 'Upload Image',
       child: (
-        <div className="imageLoader"><Upload {...props}>
+        <div className="imageLoader"><Upload maxCount={1} name="file_upload" ref={fileUploadInput} {...props}>
         <Button icon={<UploadOutlined />}>Upload</Button>
       </Upload>
       </div>),
     },
   ]
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    let dateStr = event.target[5].defaultValue;
+
+    var createdEvent = {
+      title: event.target[0].value,
+      type: event.target[1].value,
+      participantsLimit: parseInt(event.target[2].value) ?? 0,
+      ageLimitGap: {
+        from: parseInt(event.target[3].value),
+        to: parseInt(event.target[4].value)
+      },
+      holdingTime: moment(dateStr, 'DD-MM-YYYY  HH:mm').toISOString(),
+      location: {
+        lat: parseFloat(event.target[7].defaultValue),
+        lng: parseFloat(event.target[8].defaultValue),
+        label: event.target[6].defaultValue
+      },
+      description: event.target[21].defaultValue,
+      posterUrl: fileUploadInput.current?.fileList[0].thumbUrl
+    };
+  
+    eventMutation(createdEvent).then(() => navigator("/Events"));
+  }
+
 
   return (
   <>
@@ -179,18 +214,18 @@ const AddEvent = () => {
   </section>
   {/* <!-- Breadcrumb Section End --> */}
   <div className="container emp-profile">
-      <form method="post">
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-md-2"> </div>
           <div className="col-md-8">
             <div className="tab-content profile-tab" id="myTabContent">
-              {eventFields.map(event => (
-                  <div className="row" key={event.label}>
+              {eventFields.map(eventField => (
+                  <div className="row" key={eventField.label}>
                     <div className="col-md-6">
-                      <label>{event.label}</label>
+                      <label>{eventField.label}</label>
                     </div>
                     <div className="col-md-6">
-                      {event.child}
+                      {eventField.child}
                     </div>
                   </div>
                 )
@@ -206,118 +241,5 @@ const AddEvent = () => {
   </>
   )
 }
-
-// const mockVal = (str: string, repeat = 1) => ({
-//   value: str.repeat(repeat),
-// });
-
-// export const SomeFunc = () => {
-//   const [address, setAddress] = React.useState("");
-
-//   const handleSelect = async (value: any) => {
-//     const results = await geocodeByAddress(value);
-//     alert(results);
-//   };
-
-//   const [value, setValue] = useState('');
-//   const [options, setOptions] = useState<{ value: string }[]>([]);
-
-//   const onSearch = (searchText: string) => {
-//     setOptions(
-//       !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
-//     );
-//     console.log('onSelect', setOptions);
-//   };
-
-//   const onSelect = (data: string) => {
-//     console.log('onSelect', data);
-//   };
-
-//   const onChange = (data: string) => {
-//     setValue(data);
-//   };
-
-  
-//   const [currentValue, setCurrentValue] = useState('')
-
-//   return (
-//     <div>
-//       <PlacesAutocomplete
-//         value={address}
-//         onChange={setAddress}
-//         onSelect={handleSelect}
-//       >
-//         {({ getInputProps, suggestions }: {getInputProps: any, suggestions: any }) => (
-//           <div>
-//             <AutoComplete
-//               options={suggestions.map((suggestion: any) => ({label: suggestion.description}))}
-//               style={{ width: 200 }}
-//               onSelect={(value: any)=> {
-//                   setCurrentValue(value),
-//                   value.getInputProps()
-//               }}
-//               placeholder="Enter your text"
-//             />
-//             <input {...getInputProps({ placeholder: "Type address" })} />
-//             <div className="autocomplete-dropdown-container">
-//               {suggestions.map((suggestion: any) => {
-//                 return (
-//                   <div>
-//                     {suggestion.description}
-//                   </div>
-//                 );
-//               })}
-//             </div>
-//           </div>
-//         )}
-//       </PlacesAutocomplete>
-//     </div>
-//   );
-// }
-
-
-// export function Soasdjfo() {
-//   const [address, setAddress] = React.useState("");
-//   const [coordinates, setCoordinates] = React.useState({
-//     lat: null,
-//     lng: null
-//   });
-
-//   const handleSelect = async (value: any) => {
-//     console.log(value)
-//     const results = await geocodeByAddress(value);
-//     const latLng = await getLatLng(results[0]);
-//     setAddress(value);
-//   };
-
-//   return (
-//     <div>
-//       <PlacesAutocomplete
-//         value={address}
-//         onChange={setAddress}
-//         onSelect={handleSelect}
-//       >
-//         {({ getInputProps, suggestions, getSuggestionItemProps, loading }: { getInputProps: any, suggestions: any, getSuggestionItemProps: any, loading: any} ) => (
-//           <div>
-//             <p>Latitude: {coordinates.lat}</p>
-//             <p>Longitude: {coordinates.lng}</p>
-
-//             <input {...getInputProps({ placeholder: "Type address" })} />
-
-//             <div>
-//               {suggestions.map((suggestion: any) => {
-//                 return (
-//                   <div {...getSuggestionItemProps(suggestion)}>
-//                     {suggestion.description}
-//                   </div>
-//                 );
-//               })}
-//             </div>
-//           </div>
-//         )}
-//       </PlacesAutocomplete>
-//     </div>
-//   );
-// }
 
 export default AddEvent

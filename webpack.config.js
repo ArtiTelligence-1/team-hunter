@@ -24,8 +24,9 @@ const config = {
   },
   devServer: {
     open: false,
-    host: "localhost",
-    port: 5086,
+    // host: "localhost",
+    allowedHosts: 'all',
+    port: 5050,
     historyApiFallback: true,
     client: {
       overlay: {
