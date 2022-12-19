@@ -21,6 +21,7 @@
     "react-phone-number-input": "^3.2.11",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
+    "react-telegram-login": "^1.1.2",
     "swiper": "^8.4.4"
   },
   "scripts": {
