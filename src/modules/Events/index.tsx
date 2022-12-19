@@ -155,7 +155,7 @@ const Events = () => (
                     <Link to="/AddEvent" className="site-btn">Add Event</Link>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-6">
+                {/* <div className="col-lg-6 col-md-6 col-sm-6">
                   <div className="shop__product__option__right">
                     <p>Sort by Price:</p>
                     <select>
@@ -164,7 +164,7 @@ const Events = () => (
                       <option value="">$55 - $100</option>
                     </select>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             {/* <div className="row w-fit">
