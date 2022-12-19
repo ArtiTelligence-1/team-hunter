@@ -161,7 +161,7 @@ const EventComponent = () => {
                   <div className="product__details__text">
                     <h4>{event?.title}</h4>
                     <h3>
-                      {event?.participants.length}
+                      {partisipants.length}
                       /
                       {event?.participantsLimit}
                     </h3>
