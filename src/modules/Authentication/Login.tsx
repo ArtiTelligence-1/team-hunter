@@ -40,7 +40,11 @@ const Login = () => {
   const handleSubmit = (oauthData: telegramOauth) => {
     console.log(oauthData);
     authorizeTelegram(oauthData)
-      .then((e) => console.log(e))
+      .then((e: any) => {
+        console.log(e);
+        localStorage.access_token = e.data.access_token;
+        window.location.replace('/');
+      })
       .catch(() => {});
   };
 
