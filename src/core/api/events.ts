@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import baseAPIQuery from './baseData';
 import { Event } from '../types/event';
-import { Comments } from '../types/discussion';
 
 export const eventApi = createApi({
   reducerPath: 'eventApi',
@@ -24,9 +23,15 @@ export const eventApi = createApi({
     }),
     addComment: builder.mutation<Comment, any>({
       query: ({ eventId, ...body }) => ({
-        url: `Events/${eventId}/comments`,
+        url: `Events/${eventId as string}/comment`,
         method: 'POST',
         body,
+      }),
+    }),
+    toggleJoinEvent: builder.mutation<any, any>({
+      query: (eventId) => ({
+        url: `Events/${eventId as string}/join`,
+        method: 'POST',
       }),
     }),
   }),
@@ -39,4 +44,5 @@ export const {
   useGetEventByIdQuery,
   useAddEventMutation,
   useAddCommentMutation,
+  useToggleJoinEventMutation,
 } = eventApi;

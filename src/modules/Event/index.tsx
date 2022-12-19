@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Image, Avatar, Button, Form, Input, Comment, List, Tooltip, Tabs } from 'antd';
 import moment from 'moment';
 import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
-import { useGetEventByIdQuery, useLazyGetEventQuery, useAddCommentMutation } from '../../core/api/events';
+import { useGetEventByIdQuery, useLazyGetEventQuery, useAddCommentMutation, useToggleJoinEventMutation } from '../../core/api/events';
 import { useGetMeQuery } from '../../core/api/user';
 import { Event } from '../../core/types/event';
 import { Discussion } from '../../core/types/discussion';
@@ -56,26 +56,29 @@ const EventComponent = () => {
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState('');
   const { data: pofileData, isLoading } = useGetMeQuery(null);
-  const [addComment, result] = useAddCommentMutation();
+  const [addComment, _] = useAddCommentMutation();
+  const [partisipants, setPartisipants] = useState<any>([]);
+  const [joinEvent, joinResponse] = useToggleJoinEventMutation();
 
   const [comments, setComments] = useState<any>([]);
-  useEffect(() => {
-    if (event) {
-      setComments(event.discussion.map((d: Discussion) => ({
-        actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-        author: d.sender.firstName,
-        avatar: d.sender.photoUrl,
-        content: (
-          <p>d.text</p>
-        ),
-        datetime: (
-          <Tooltip title={d.replyTo.toString()}>
-            <span>{Date.parse(moment(d.replyTo).format('DD MMM, YYYY')) - Date.now()}</span>
-          </Tooltip>
-        ),
-      })));
-    }
-  }, []);
+  // useEffect(() => {
+  if (!response.isLoading && (event?.discussion?.length ?? 0) > 0 && comments.length === 0) {
+    setComments(event?.discussion.map((d: Discussion) => ({
+      actions: [<span key="comment-list-reply-to-0">Reply to</span>],
+      author: d.sender.firstName,
+      avatar: d.sender.photoUrl,
+      content: (
+        <p>{d.text}</p>
+      ),
+      datetime: (
+        <Tooltip title={d.id.toString()}>
+          <span>{moment(d.id).fromNow()}</span>
+        </Tooltip>
+      ),
+    })));
+    setPartisipants(event!.participants);
+  }
+  // }, []);
 
   const containerStyle = {
     width: '100%',
@@ -100,12 +103,26 @@ const EventComponent = () => {
         commentItem,
       ]);
     }, 1000);
-    addComment({ eventId: id ?? '', text: value });
+    addComment({ eventId: id ?? '', text: value }).catch(() => {});
+  };
+
+  const toggleJoinEvent = () => {
+    joinEvent(id ?? '').then((e: any) => {
+      if (e.data.message === 'joined') {
+        setPartisipants([
+          ...partisipants,
+          { id: pofileData?.id },
+        ]);
+      } else {
+        setPartisipants(partisipants.filter((a: any) => a.id !== pofileData?.telegramId));
+      }
+    }).catch(() => {});
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
+
   return response.isFetching ?
     <LoadingSpinner /> :
       (
@@ -160,11 +177,11 @@ const EventComponent = () => {
                         </GoogleMap>
                       </LoadScript>
                     </div>
-                    <p>{event?.location.label}</p>
+                    <p>{event?.location?.label}</p>
                     <div className="product__details__cart__option">
-                      <Link to="/" className="primary-btn">
-                        Join
-                      </Link>
+                      <button type="button" onClick={toggleJoinEvent} className="primary-btn">
+                        {partisipants.filter((p: any) => p.id === pofileData?.id).length ? 'Leave' : 'Join'}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -223,7 +240,7 @@ const EventComponent = () => {
                           )}
                         />
                         <Comment
-                          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+                          avatar={<Avatar src={pofileData?.photoUrl} alt="Han Solo" />}
                           content={(
                             <Editor
                               onChange={handleChange}

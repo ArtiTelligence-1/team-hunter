@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import baseAPIQuery from './baseData';
 import { Profile } from '../types/profile';
+import { telegramOauth } from '../types/telegramOauth';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -18,6 +19,13 @@ export const userApi = createApi({
         body,
       }),
     }),
+    telegramOauth: builder.mutation<telegramOauth, any>({
+      query: (body) => ({
+        url: 'user/oauth/telegram',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -25,4 +33,5 @@ export const {
   useGetMeQuery,
   reducer,
   useAddMeMutation,
+  useTelegramOauthMutation,
 } = userApi;

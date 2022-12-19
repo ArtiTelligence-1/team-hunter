@@ -22,7 +22,7 @@ const Footer = () => (
             <h6>TeamHunter</h6>
             <ul>
               {structureMap('footer').map((item) => (
-                <li key={item.component.key}>{item.component}</li>
+                <li key={item.key}>{item.component}</li>
               ))}
             </ul>
           </div>
