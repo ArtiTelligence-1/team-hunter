@@ -28,6 +28,12 @@ export const eventApi = createApi({
         body,
       }),
     }),
+    toggleJoinEvent: builder.mutation<any, any>({
+      query: (eventId) => ({
+        url: `Events/${eventId as string}/join`,
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
@@ -38,4 +44,5 @@ export const {
   useGetEventByIdQuery,
   useAddEventMutation,
   useAddCommentMutation,
+  useToggleJoinEventMutation,
 } = eventApi;

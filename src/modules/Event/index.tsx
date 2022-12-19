@@ -106,11 +106,11 @@ const EventComponent = () => {
 
   const toggleJoinEvent = () => {
     joinEvent(id ?? '').catch(() => {}).then((e) => {
-      if(e.message==='joined'){
-        event?.participants.push({id});
-      }else if(e.==='joined'){
-        event?.participants = event?.participants.filter(a => a.id===pofileData?.telegramId);
-      }
+      // if(e.message==='joined'){
+      //   event?.participants.push({id});
+      // }else if(e.==='joined'){
+      //   event?.participants = event?.participants.filter(a => a.id===pofileData?.telegramId);
+      // }
     });
     
   };
