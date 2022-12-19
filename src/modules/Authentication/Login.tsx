@@ -6,6 +6,7 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faTelegram } from '@fortawesome/free-brands-svg-icons';
+// @ts-expect-error this is js module
 import TelegramLoginButton from 'react-telegram-login';
 
 import './Login.less';
@@ -40,7 +41,7 @@ const Login = () => {
     console.log(oauthData);
     authorizeTelegram(oauthData)
       .catch(() => {});
-  }
+  };
 
   return (
     <div className="login-container">
@@ -50,7 +51,7 @@ const Login = () => {
             <h1>Sign in</h1>
             {/* <SocialLoginBox /> */}
             <div className="mt-4">
-              <TelegramLoginButton  dataOnauth={handleSubmit} botName="experiment_testing_bot" />
+              <TelegramLoginButton dataOnauth={handleSubmit} botName="experiment_testing_bot" />
             </div>
             {/* <div dangerouslySetInnerHTML={{ __html: '<iframe id="telegram-login-experiment_testing_bot" src="https://oauth.telegram.org/embed/experiment_testing_bot?origin=https%3A%2F%2F6be5-185-17-127-253.ngrok.io&amp;return_to=https%3A%2F%2F6be5-185-17-127-253.ngrok.io%2Flogin%2Fsignin&amp;size=medium&amp;request_access=write" scrolling="no" style="overflow: hidden; border: medium none; height: 28px; width: 185px;" width="186" height="28" frameborder="0"></iframe>' }} /> */}
             {/* <script src="https://telegram.org/js/telegram-widget.js?21" data-telegram-login="experiment_testing_bot" data-size="medium" data-userpic="false" data-onauth="(user) => alert(user)" data-request-access="write" /> */}

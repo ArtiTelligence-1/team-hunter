@@ -24,8 +24,8 @@ export const userApi = createApi({
         url: 'user/oauth/telegram',
         method: 'POST',
         body,
-      })
-    })
+      }),
+    }),
   }),
 });
 

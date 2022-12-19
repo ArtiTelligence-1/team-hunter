@@ -107,23 +107,22 @@ const EventComponent = () => {
   };
 
   const toggleJoinEvent = () => {
-    joinEvent(id ?? '').catch(() => {}).then((e: any) => {
-      if(e.data.message === 'joined'){
+    joinEvent(id ?? '').then((e: any) => {
+      if (e.data.message === 'joined') {
         setPartisipants([
           ...partisipants,
-          {id: pofileData?.id}
+          { id: pofileData?.id },
         ]);
-      }else if(e.data.message === 'joined'){
+      } else {
         setPartisipants(partisipants.filter((a: any) => a.id !== pofileData?.telegramId));
       }
-    });
-    
+    }).catch(() => {});
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
-  
+
   return response.isFetching ?
     <LoadingSpinner /> :
       (
@@ -181,7 +180,7 @@ const EventComponent = () => {
                     <p>{event?.location?.label}</p>
                     <div className="product__details__cart__option">
                       <button type="button" onClick={toggleJoinEvent} className="primary-btn">
-                        {partisipants.filter((p:any) => p.id === pofileData?.id).length ? "Leave": "Join"}
+                        {partisipants.filter((p: any) => p.id === pofileData?.id).length ? 'Leave' : 'Join'}
                       </button>
                     </div>
                   </div>
