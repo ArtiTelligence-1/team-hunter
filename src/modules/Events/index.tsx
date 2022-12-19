@@ -13,10 +13,10 @@ const Events = () => (
         <div className="row">
           <div className="col-lg-12">
             <div className="breadcrumb__text">
-              <h4>Shop</h4>
+              <h4>Events</h4>
               <div className="breadcrumb__links">
                 <Link to="/">Home</Link>
-                <span>Shop</span>
+                <span>Events</span>
               </div>
             </div>
           </div>
